@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-用户信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/del.js"></script>
+
+        <!--    显示placeholder数据      -->
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script> 
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <!--   bootstrap 兼容 IE       -->
+
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--   兼容 html5       -->
+        <!--[if lt IE 9]>
+           <script src="__PUBLIC__/JS/html5shiv.js";></script>
+           <script src="__PUBLIC__/JS/respond.js";></script>
+               
+        <![endif]-->
+
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 销售员 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{$shopid}" class="btn btn-primary btn-lg active yuan-6" role="button"  id="bar"
+                   style="outline: none; blur:expression(this.onFocus=this.blur());">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr class="tb-thead">
+                            <th style="text-align: center;width: 60px;">ID</th>
+                            <th >用户名</th>
+                            <th >密码</th>
+                            <th >姓名</th>
+                            <th >身份证</th>
+                            <th >电话</th>
+                            <th >邮箱</th>
+                            <th style="width: 100px;">注册时间</th>
+                            <th style="width: 100px;">上次登录时间</th>
+                            <th style="text-align: center;width: 60px;">状态</th>
+                            <th >备注</th>
+                            <th style="width: 80px;text-align: center">操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <volist name="list" id="vo">
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+                        <td style="width: 80px;text-align: center">{$vo.id}
+
+                        </td>
+                        <td >{$vo.name|str_replace=$name, '<font style="color:red">' . $name . '</font>', ###}</td>
+                        <td >{$vo.pwd}</td>
+                        <td >{$vo.realName|str_replace=$real, '<font style="color:red">' . $real . '</font>', ###}</td>
+                        <td >{$vo.IDcard|str_replace=$card, '<font style="color:red">' . $card . '</font>', ###}</td>
+                        <td >{$vo.tel|str_replace=$tel, '<font style="color:red">' . $tel . '</font>', ###}</td>
+                        <td >{$vo.email|str_replace=$email, '<font style="color:red">' . $email . '</font>', ###}</td>
+                        <td style="text-align: center;width: 100px;">{:str_replace($str,$replace,$vo['regtime'])}</td>
+                        <td style="text-align: center;width: 100px;">{$vo.latetime|str_replace=$date,'<font style="color:red">' . $date . '</font>', ###}</td>
+                        <td style="text-align: center;width: 60px;">
+                        <php>if ($vo['status']=="1"){</php>
+                        使用
+                        <php>}else{
+                        </php>
+                        <font style="color: red"> 禁用 </font>
+                        <php>}</php>
+                        </td></td>
+                        <td >{:str_replace($str,$replace,$vo['info'])}</td>
+                        <td style="width: 80px;text-align: center">
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/update',array('uid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/delete',array('uid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" id="del" onclick ="return del_sure()">删 除</a>
+                        </td>
+
+                        </tr>
+                    </volist>
+
+                    </tbody>
+                    <tr class="footerTr">
+                        <td style="width: 80px;text-align: center">{$id|default="0"}</td>
+                        <td style="text-align: center">总计</td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="text-align: center;"></td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red"></td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

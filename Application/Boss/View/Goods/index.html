@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 商品信息 -> 自有商品 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $("button").click(function () {
+                    $("#search").slideToggle();
+                });
+            });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block yuan-10" id="moreSearch">多条件搜索</button>
+
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Goods/searching')}">
+                <input type="text"   name="shopid"  value="{$shopid}"  style="display: none" >
+                <div style="text-align: center;display: none" id="search" >
+
+                    <label class="label-form" >条形码</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="条形码" name="barcode" >
+
+
+                    <label class="label-form" >商品名</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="商品名" name="product" >
+
+                    <label class="label-form" >首字母</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="统一绿茶 TYLC" name="letter" >
+                    <br>
+
+                    <label class="label-form" style="margin-top:0px;">商品类型</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="商品类型" name="type" >
+
+                    <label class="label-form" >规格</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="规格" name="standard" >
+
+                    <label class="label-form" >单位</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="计量单位" name="unit" >
+                    <br>
+
+                    <label class="label-form" >建议售价</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="建议售价" name="price" >
+
+                    <label class="label-form" >商品描述</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="商品描述" name="info" >
+                    <div style="width: 330px;display: inline-block"></div>
+                    <br>
+                    <button type="submit" class="input-but"  style="font-size: 20px;" id="out-xian"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr class="tb-thead">
+                            <th >ID</th>
+                            <th >条形码</th>
+                            <th >商品名</th>
+                            <th >首字母</th>
+                            <th >商品类型</th>
+                            <th >规格</th>
+                            <th style="width: 10%;text-align: center">计量单位</th>
+                            <th style="width: 10%;text-align: center">建议售价</th>
+                            <th >商品描述</th>
+                            <th >操作</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="空白">
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+                        <td style="width: 5%">{$vo.id}
+
+                        </td>
+                        <td title="{$vo.barcode}" style="width: 6%">{$vo.barcode}</td>
+                        <td title="{$vo.product}" style="width: 15%">{$vo.product}</td>
+                        <td title="{$vo.letter}" style="width: 7%">{$vo.letter}</td>
+                        <td title="{$vo.type}" style="width: 8%">{$vo.type}</td>
+
+                        <td title="{$vo.standard}" style="width: 20%">{$vo.standard}</td>
+                        <td title="{$vo.unit}" style="width: 10%;text-align: center">{$vo.unit}</td>
+                        <td title="{$vo.price}" style="width: 10%;text-align: center">{$vo.price}</td>
+                        <td title="{$vo.info|strip_tags}" style="width: 20%">{$vo.info|trim|strip_tags|msubstr=0,50,"utf-8",false}</td>
+
+                        <td style="width: 5%">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Goods/update',array('shopid'=>$shopid,'goid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Goods/delete',array('shopid'=>$shopid,'goid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" id="del" onclick ="return del_sure()">删 除</a>
+                        </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td >{$id|default="0"}</td>
+                        <td style="text-align: center">总计</td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="text-align: center;"></td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red"></td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+
+
+
+
+
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

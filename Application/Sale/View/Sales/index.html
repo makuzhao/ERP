@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>销售商品</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <!--[if lt IE 9]>
+                <script src="__PUBLIC__/JS/html5shiv.js";></script>
+                <script src="__PUBLIC__/JS/respond.js";></script>
+            <![endif]-->
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商品销售 -> 今日单子
+
+        </div>
+        <div style="margin-top: 10px">
+
+
+
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $("button").click(function () {
+                    $("#search").slideToggle();
+                });
+            });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block yuan-10" id="moreSearch">多条件搜索</button>
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Sales/searching')}">
+                <div style="text-align: center;display: none" id="search" >
+
+                    <label class="label-form" >条形码</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="条形码" name="barcode" >
+
+                    <label class="label-form" >商品名</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="商品名" name="product" >
+
+                    <label class="label-form" >首字母</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="统一绿茶 TYLC" name="letter" >
+                    <br>
+                    <label class="label-form" >数量</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="数量" name="outamount" >
+
+                    <label class="label-form" >销售价</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="销售价" name="outprice" >
+
+
+                    <label class="label-form" >销售金额</label>
+                    <input type="text"  class="input-in input-in-place" id='bar' placeholder="销售金额" name="outsum" >
+
+                    <br>
+                    <button type="submit" class="btn btn-primary yuan-6"  style="font-size: 20px;" id="out-xian"> 搜 索 </button>
+                </div>
+
+
+
+
+            </form>
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr class="tb-thead">
+                            <th style="width: 10%">ID</th>
+                            <th style="width: 15%">条形码</th>
+                            <th style="width: 20%;">商品</th>
+                            <th style="width: 10%;text-align: center">数量</th>
+                            <th style="width: 10%;text-align: center">销售价</th>
+                            <th style="width: 10%;text-align: center">销售金额</th>
+                            <th style="width: 10%;text-align: center">销售员</th>
+                            <th style="width: 15%;text-align: center">日期</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="暂时没有数据">
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+                        <td >{$vo.id}
+                            <!--
+                            <a href="{:U('Sales/delete',array('outid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                            </a>
+                            -->
+                        </td>
+                        <td title="{$vo.barcode}" >
+                            {$vo.barcode}
+                        </td>
+                        <td title="{$vo.product}" >{$vo.product}</td>
+                        <td title="{$vo.num}"  style="text-align: center;">{$vo.num}</td>
+                        <td title="{$vo.presell}" style="text-align: center;">{$vo.presell}</td>
+                        <td title="{$vo.amount}" style="text-align: center;">{$vo.amount}</td>
+                        <td title="{$vo.salesman}" style="text-align: center;">{$vo.salesman}</td>
+                        <td title="{$vo.saledate}" style="text-align: center;">{$vo.saledate}</td>
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <!--          总计                        -->
+                    <tr class="footerTr">
+                        <td style="width: 10%;">{$id|default="0"}</td>
+                        <td style="width: 15%">总计</td>
+                        <td style="width: 20%;">&nbsp;</td>
+                        <td style="width: 10%;text-align: center;text-align: center;">{$num|default="0"}</td>
+                        <td style="width: 10%;text-align: center">&nbsp;</td>
+                        <td style="width: 10%;text-align: center;color: red">{$total|default="今日还没有收益"}</td>
+                        <td style="width: 10%;text-align: center">&nbsp;</td>
+                        <td style="width: 15%;text-align: center">&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加预售价</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/check.js"></script>
+        <script src="__PUBLIC__/JS/bootstrapValidation.js"></script>
+        <script src="__PUBLIC__/Editor/kindeditor.js"></script>
+        <script src="__PUBLIC__/Editor/lang/zh-CN.js"></script>
+        <script>
+            KindEditor.ready(function (K) {
+                window.editor = K.create('#editor_id');
+            });
+        </script>
+
+
+    </head>
+    <body class="container-fluid">
+
+
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Presell/add')}">
+
+                <script type="text/javascript">
+                    function showbar() {
+                        var bar = $('#bar').val();
+
+                        $.ajax({
+                            type: 'get',
+                            url: '__URL__/add/code/' + bar,
+                            success: function (data) {
+                                $('#code').html(data);
+                            }
+                        });
+                    }
+                </script>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">条形码</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="bar" placeholder="条形码扫描" name="barcode" onkeyup="showbar()" 
+                               onchange ="showbar()" required>
+                    </div>
+                </div>
+                <div id="code">
+                    
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+    </body>
+</html>

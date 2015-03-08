@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/hongic.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.SuperSlide.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".sideMenu").slide({
+                    titCell: "h3",
+                    targetCell: "ul",
+                    defaultIndex: -1,
+                    effect: 'slideDown',
+                    delayTime: '500',
+                    trigger: 'click',
+                    triggerTime: '150',
+                    defaultPlay: true,
+                    returnDefault: false,
+                    easing: 'easeInQuint',
+                    endFun: function () {
+                        scrollWW();
+                    }
+                });
+
+            });
+
+
+
+
+        </script>
+        <title>{:C('HOME_PAGE')}</title>
+    </head>
+    <body>
+        <div class="top">
+            <div id="top_t">
+                <div id="logo" class="fl"></div>
+                <div id="photo_info" class="fr">
+                    <div id="photo" class="fl">
+                        <img src="__PUBLIC__/Image/a.png" alt="" width="60" height="60">
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="help_info">
+                            <!--  帮助   -->
+                            <a href="#" id="hp">&nbsp;</a>
+                            <!--  关于   -->
+                            <a href="#" id="gy">&nbsp;</a>
+                            <!--  退出   -->
+                            <a href="{:U('Index/unsetSess')}" id="out">&nbsp;</a>
+                        </div>
+                        <div class="info_center">
+                            <!--   当前用户   -->
+                            {$sess}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ahov">
+            <script>
+                $(function () {
+                    $(".ahov dd").hover(function () {
+                        $(".side").show();
+                    });
+                    $(".ahov dd").mouseleave(function () {
+                        $(".side").hide();
+                    });
+                });
+            </script>
+
+
+
+            <dd>
+                <a > <button class="bbt" >显示菜单</button> </a>
+
+                <div class="side"  style="height: 430px;"> 
+
+                    <div class="sideMenu"  >
+
+                        <h3 title="" class="uul">商品信息</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Goods/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Goods/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+                        </ul>
+
+                        <h3 title="" class="uul">商品类型</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Type/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Type/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+                        </ul>
+
+                        <h3 title="" class="uul">商家</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Company/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Company/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+                        </ul>
+
+                        <h3 title="" class="uul">管理老板</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('User/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('User/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+
+                        </ul>
+                        <h3 title="" class="uul">审核收费</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Probation/freeIndex')}" target="rightFrame" class="uul"> 审核试用     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Probation/tollIndex')}" target="rightFrame" class="uul"> 审核收费     </a>
+                            </li>
+
+
+                        </ul>
+
+                        <h3 title="" class="uul"> 分组管理</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Group/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Group/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+                        </ul>
+
+                        <h3 title="" class="uul"> 规则管理</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Rule/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Rule/add')}" target="rightFrame" class="uul"> 添加     </a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </dd>
+        </div>
+
+
+        <div class="main">
+
+            <iframe name="rightFrame" id="rightMain" src="{:U('Index/main')}" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+        </div>
+
+        <div class="bottom">
+            <div id="bottom_bg">
+                {:C('ALL_COPY')}
+            </div>
+        </div>
+
+    </body>
+
+</html>
+

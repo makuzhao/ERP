@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-商家信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商家 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Company/index')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr>
+                            <th >ID</th>
+                            <th >商家</th>
+                            <th >法人</th>
+                            <th >法人电话</th>
+                            <th >联系人</th>
+                            <th >联系人电话</th>
+                            <th >地址</th>
+                            <th >电话</th>
+                            <th >官网</th>
+                            <th >备注</th>
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td style="width: 8%">{$vo.id|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+
+                            </td>
+                            <td title="{$vo.company}" style="width: 12%">{$vo.company|msubstr=0,30,"utf-8",false|str_replace=$com, '<font style="color:red">' . $com . '</font>', ###}</td>
+                            <td title="{$vo.boss}" style="width: 5%">{$vo.boss|msubstr=0,30,"utf-8",false|str_replace=$bos, '<font style="color:red">' . $bos . '</font>', ###}</td>
+                            <td title="{$vo.bostel}" style="width: 10%">{$vo.bostel|msubstr=0,30,"utf-8",false|str_replace=$bostel, '<font style="color:red">' . $bostel . '</font>', ###}</td>
+                            <td title="{$vo.people}" style="width: 5%">{$vo.people|msubstr=0,30,"utf-8",false|str_replace=$peo, '<font style="color:red">' . $peo . '</font>', ###}</td>
+                            <td title="{$vo.peotel}" style="width: 10%">{$vo.peotel|msubstr=0,30,"utf-8",false|str_replace=$peotel, '<font style="color:red">' . $peotel . '</font>', ###}</td>
+                            <td title="{$vo.address}" style="width: 20%" >{$vo.address|msubstr=0,30,"utf-8",false|str_replace=$addr, '<font style="color:red">' . $addr . '</font>', ###}</td>
+                            <td title="{$vo.tel}" style="width: 10%">{$vo.tel|msubstr=0,30,"utf-8",false|str_replace=$tel, '<font style="color:red">' . $tel . '</font>', ###}</td>
+                            <td title="{$vo.website}" style="width: 14%">{$vo.website|msubstr=0,30,"utf-8",false|str_replace=$web, '<font style="color:red">' . $web . '</font>', ###}</td>
+                            <td title="{$vo.info}" style="width: 6%">{$vo.info|msubstr=0,30,"utf-8",false|str_replace=$info, '<font style="color:red">' . $info . '</font>', ###}</td>
+
+
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/update',array('comid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" id="del" onclick ="return del_sure()">删 除</a>  
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center;">总计</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 26px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 26px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

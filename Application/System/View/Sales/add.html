@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加销售的商品</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+
+
+        <script src="__PUBLIC__/Editor/kindeditor.js"></script>
+
+        <script>
+            KindEditor.ready(function (K) {
+                window.editor = K.create('#editor_id');
+            });
+        </script>
+
+
+
+    </head>
+    <body class="container-fluid">
+
+
+        <div style="margin-top: 30px;width: 90% ">
+
+            <div style="font-size: 40px;;margin-bottom:20px;text-align: center;">
+
+                今日营业额：
+                <font style="color: red; font-size: 50px;">{$total} </font>
+
+
+            </div>
+
+            <div>
+
+                <form class="form-horizontal" role="form"  id="myForm" name="myForm">
+
+                    <!--     条形码 ajax 传值 显示所有预售价的数据到前端        -->
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">条形码</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  id="bar" placeholder="条形码扫描或大写字母" name="barcode"                                           onkeyup ="showbar()" 
+                                   onchange="showbar()"
+                                   required>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        function showbar() {
+                            var bar = $('#bar').val();
+                            $.ajax({
+                                type: 'get',
+                                url: '__URL__/add/code/' + bar,
+                                success: function (data) {
+                                    $('#sale').html(data);
+
+                                }
+                            });
+                        }
+                    </script>
+
+
+                    <script>
+                        $("input[id=bar]").keydown(function () {
+                            var event = arguments.callee.caller.arguments[0] || window.event;//消除浏览器差异  
+                            if (event.keyCode == 13) {
+                                if (bar.value == '') {
+                                    alert("不能为空");
+                                    window.location.href = "__URL__/add";
+                                    return false;
+                                }
+                                //alert("错误操作");
+                                return false;
+                            }
+                        })
+                    </script>
+
+
+
+                    <script>
+                        document.onkeydown = function (evt) {
+                            var evt = window.event ? window.event : evt;
+                            var bar = document.getElementById("bar");
+                            if (evt.keyCode == 13) {
+                                if (bar.value == '') {
+                                    alert("不能留空");
+                                    window.location.href = "__URL__/add";
+                                    return false;
+                                }
+                                document.myForm.submit();
+
+                            }
+
+                        }
+
+
+
+
+                    </script>
+
+
+                    <!--   遮罩层显示    -->
+                    <script language="javascript" type="text/javascript">
+
+                        function showdiv() {
+                            document.getElementById("bg").style.display = "block";
+                            document.getElementById("show").style.display = "block";
+                            var bar = $('#bar').val();
+                            $.ajax({
+                                type: 'post',
+                                url: '__URL__/shows',
+                                data: $('#myForm').serialize(),
+                                success: function (data) {
+                                    $('#neirong').html(data);
+                                },
+                            });
+
+                        }
+                        function hidediv() {
+                            document.getElementById("bg").style.display = 'none';
+                            document.getElementById("show").style.display = 'none';
+                            window.location.href = "{:U('Sales/add')}";
+                        }
+                    </script>
+                    <style type="text/css">
+                        #bg{ 
+                            display: none; 
+                            position: absolute; 
+                            top: 0%;  
+                            left: 0%; 
+                            width: 100%;
+                            height: 100%; 
+                            background-color: black; 
+                            z-index:1001;  
+                            -moz-opacity: 0.7; 
+                            opacity:.70; 
+                            filter: alpha(opacity=70);
+
+                        }
+                        #show{
+                            display: none; 
+                            position: absolute; 
+                            top: 15%;  
+                            left: 22%;
+                            width: 730px; 
+                            min-height: 360px;
+                            padding-top: 8px; 
+                            border: 8px solid #E8E9F7;  
+                            background-color: white;
+                            z-index:1003;  
+                            //overflow: auto;
+                            border-radius: 10px;
+                            -moz-border-radius: 10px;
+                            -webkit-border-radius: 10px;
+
+                        }
+                        #content{
+                            min-height: 200px;
+                            margin-top: 20px;
+                        }
+                    </style>
+
+
+
+
+
+
+                    <div id="sale">
+
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div style="margin-top: 120px;width: 800px">
+
+            <form class="form-horizontal" role="form"  id="form">
+
+                <div id="bg" onclick="hidediv()
+                                ;"><!-- 点击阴影层同样关闭遮罩层效果 --> </div>
+
+
+                <div id="show">
+                    <div id='neirong' style="min-height: 200px;margin-top: 20px;">
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <a  href="{:U('Sales/add')}" class="btn btn-primary btn-lg" role="button">完成交易</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </body>
+</html>

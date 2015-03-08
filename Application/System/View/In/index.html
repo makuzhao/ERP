@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>入库商品的基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('In/searching')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">关键字</label>
+                    <div class="col-sm-4">
+                        <input type="text"  class="form-control" id='bar' placeholder="关键字" name="search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                </div>
+
+
+            </form>
+            <div style="margin-top: 10px">
+
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td style="width: 10%">ID</td>
+                        <td style="width: 15%">编号</td>
+                        <td style="width: 15%">条形码</td>
+                        <td style="width: 15%">商品名</td>
+                        <td style="width: 10%;text-align: center">入库时间</td>
+                        <td style="width: 10%;text-align: center">入库数量</td>
+                        <td style="width: 10%;text-align: center">入库单价</td>
+                        <td style="width: 10%;text-align: center">总金额</td>
+                        <td style="width: 10%;text-align: center">负责人</td>
+
+
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td >{$vo.id}
+                                <a href="{:U('In/delete',array('inid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.encode}" >
+                                <a href="" >{$vo.encode}
+                                </a>
+                            </td>
+                            <td title="{$vo.product}" >{$vo.barcode}</td>
+                            <td title="{$vo.product}" >{$vo.product|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.intime}"  style="text-align: center;">{$vo.intime}</td>
+                            <td title="{$vo.inamount}" style="text-align: center;">{$vo.inamount}</td>
+                            <td title="{$vo.inprice}" style="text-align: center;">{$vo.inprice}</td>
+                            <td title="{$vo.insum}" style="text-align: center;">{$vo.insum}</td>
+                            <td title="{$vo.people}" style="text-align: center;">{$vo.people}</td>
+
+
+
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('In/update',array('inid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+                        </tr>
+                    </volist>
+
+                    <!--          总计                        -->
+                    <tr style="background-color: #dffdff;font-size: 20px;font-weight: bolder">
+                        <td style="text-align: center">总计</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red">{$total}</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新用户组的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+        <style>
+            .input-in{
+                padding: 10px;
+                border-color: #fff;
+                border: 0px;
+                vertical-align: middle;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+                margin-bottom: 10px;
+
+            }
+            .input-in-place{
+                margin-left: 0px;
+                margin-right:60px;
+                width: 306px;
+            }
+            .yuan-6{
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+            }
+        </style>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：分组管理 -> 更新
+
+        </div>
+        <div style="margin-top: 30px;width: 80%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Group/update')}" onsubmit="return che()">
+                <volist name='group' id='vo'>
+                    <input type="hidden" name='gid' value="{$vo.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">用户组名</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="bar" placeholder="Guest" 
+                                   name='title' value="{$vo.title}"  required="true" >
+                        </div>
+                        <div class="xing-red">*</div>
+                        <script>
+                            function che() {
+                                var bar = $("#bar").val();
+                                if (bar == "") {
+                                    alert("用户组名，不能为空");
+                                    $("#bar").focus();
+                                    return false;
+                                }
+                            }
+                        </script>
+                    </div>
+                </volist>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">当前状态</label>
+                    <div class="col-sm-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="status" checked="checked" id="inlineRadio1" value="1" > 启用
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="inlineRadio1" value="0"> 禁用
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">系统权限<br>(已分配)</label>
+                    <div class="col-sm-10" >
+                        <table class="table">
+                            <tr>
+                            <volist name="sysHave" id="vo" default="空白">
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;" checked="checked"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+                            </volist>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">系统权限<br>(未分配)</label>
+                    <div class="col-sm-10">
+                        <table class="table">
+                            <tr>
+                            <volist name="sysNo" id="vo" default="空白">
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+                            </volist>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">老板权限<br>(已分配)</label>
+                    <div class="col-sm-10" >
+                        <table class="table">
+                            <tr>
+                            <volist name="bosHave" id="vo" default="空白">
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;" checked="checked"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+                            </volist>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">老板权限<br>(未分配)</label>
+                    <div class="col-sm-10" >
+                        <table class="table">
+                            <tr>
+                            <volist name="bosNo" id="vo" default="空白">
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+
+                            </volist>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">销售员权限<br>(已分配)</label>
+                    <div class="col-sm-10" >
+                        <table class="table">
+                            <tr>
+                            <volist name="saleHave" id="vo" default="空白">
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;" checked="checked"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+
+
+                            </volist>
+                            </label>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">销售员权限<br>(未分配)</label>
+                    <div class="col-sm-10">
+                        <table class="table">
+                            <tr>
+                            <volist name="saleNo" id="vo" default="空白">
+
+                                <td >
+                                    <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" 
+                                           style="margin-left: -8px;"> 
+                                </td>
+                                <td>
+                                    {$vo.title}
+                                </td>
+                                <php>
+                                    if ($i%3==0){
+                                    echo "</tr>";
+                                    }
+                                </php>
+
+
+                            </volist>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="input-but" id="out-xian"> 更 新 </button>
+                    </div>
+                </div>
+            </form>
+
+            <script>
+                var testElement = document.createElement('input');
+                /* 检测浏览器是否支持 required 属性
+                 * 为不支持 required 属性的浏览器写兼容代码
+                 */
+                var requiredSupported = 'required' in testElement && !/Version\/[\d\.]+\s*Safari/i.test(navigator.userAgent);
+                if (!requiredSupported) {
+                    document.getElementsByTagName("form")[0].onsubmit = function (e) {
+                        var inputs = document.getElementsByTagName('input');
+                        for (var n = 0; n < inputs.length; n++) {
+                            var input = inputs[n];
+                            var placeholder = input.placeholder ? input.placeholder : input.getAttribute('placeholder');
+                            if (!placeholder)
+                                continue;
+                            if (!input.value || (input.value == placeholder)) {
+                                alert(placeholder + ',此处不能为空 ');
+                                e = e || window.event;
+                                e.preventDefault && e.preventDefault();
+                                e.returnValue = false;
+                                break;
+                            }
+                        }
+                    };
+                }
+
+
+            </script>
+
+
+
+        </div>
+    </body>
+</html>

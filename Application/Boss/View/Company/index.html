@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商家基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").slideToggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="out-xian">多条件搜索</button>
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Company/searching')}">
+                <div style="text-align: center;display: none" id="search" >
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">商家</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="公司名" name="com" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">法人</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="法人" name="bos" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">法人电话</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="法人电话" name="bostel" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">联系人</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="联系人" name="people" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">联系人电话</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="联系人电话" name="peotel" >
+                        </div>
+
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">数量</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="数量" name="outamount" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">价格</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="价格" name="outprice" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">金额</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="金额" name="outsum" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">负责人</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="负责人" name="people" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">时间 从</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  name="start"  class="form-control"  placeholder="日期格式：2014-11-10"   id="start">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input[id=start]").click(function () {
+                                        $('#start').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">至</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  name="end"  class="form-control"  placeholder="日期格式：2014-11-11"   id="end">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input").click(function () {
+                                        $('#end').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+
+                    </div>
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;" id="out-xian"> 搜 索 </button>
+                </div>
+
+            </form>
+
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td >ID</td>
+                        <td >商家</td>
+                        <td >地址</td>
+                        <td >联系人</td>
+                        <td >电话</td>
+
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="width: 10%">{$vo.id}
+                                <a href="{:U('Company/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.company}" style="width: 30%">{$vo.company|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.address}" style="width: 30%" >{$vo.address|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.boss}" style="width: 10%">{$vo.boss|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.tel}" style="width: 20%">{$vo.tel|msubstr=0,30,"utf-8",false}</td>
+
+
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/update',array('comid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

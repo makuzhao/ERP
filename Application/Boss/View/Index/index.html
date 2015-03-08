@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN"> 
+    <head>
+        <title>{:C('HOME_PAGE')}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/styleBoss.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+
+    </head>
+    <body >
+        <div class="top">
+            <div id="top_t">
+                <div id="photo_info" class="fr">
+                    <div id="photo" class="fl">
+                        <img src="__PUBLIC__/Image/menu/tou.png" alt="" width="60" height="60" style="border: 0">
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="info_center">
+                            {$sess}
+                        </div>
+                        <div class="help_info">
+                            <a href="{:U('Index/unsetSess')}" id="out" 
+                               style="outline: none;blur:expression(this.onFocus=this.blur());">
+                                <img src="__PUBLIC__/Image/menu/bt.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav" >
+                <ul>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/shop.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Shop/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a href="{:U('Shop/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/sales.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Sales/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Sales/add')}" target="rightFrame" >销 售</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/out.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Out/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Out/add')}" target="rightFrame" >入 库</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/goods.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Goods/erpIndex')}" target="rightFrame" >主库商品</a></li>
+                            <li><a  href="{:U('Goods/index')}" target="rightFrame" >自有商品</a></li>
+                            <li><a  href="{:U('Goods/add')}" target="rightFrame" >添加自有商品</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/salesman.png"></a>
+                        <ul>
+                            <li><a  href="{:U('User/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('User/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"  style="background: url('__PUBLIC__/Image/login/asdsadsd-100.png') repeat-x;">
+                            <img src="__PUBLIC__/Image/menu/revenue.png">
+                        </a>
+                        <ul>
+                            <li><a  href="{:U('Revenue/index')}" target="rightFrame" >各商品</a></li>
+                            <li><a  href="{:U('Retailer/index')}" target="rightFrame" >各销售员</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="ahov" style="z-index: 38">
+                <script>
+                    $(function () {
+                        $(".ahov dd").mouseover(function () {
+                            $(".sideBoss").show();
+                        });
+                        $(".ahov dd").mouseleave(function () {
+                            $(".sideBoss").hide();
+                        });
+                    });
+                </script>
+                <dd style="width: 200px;height: 600px;z-index: 38">
+                    <div class="bbt" >
+                        <div style="width:22px;padding-top: 6px;font-family: '微软雅黑';font-size: 18px;">显示店铺</div>
+                    </div> 
+                    <div class="sideBoss">
+                        <volist name="shop" id="xc" >
+                            <ul>
+                                <li>
+                                    <a href="{:U('Revenue/index',array('shopid'=>$xc['id']))}"  title="{$xc.shop}" target="rightFrame"> {$xc.shop|msubstr=0,8,"utf-8",false} </a>
+                                </li>
+                            </ul>
+                        </volist>
+                    </div>
+                </dd>
+            </div>
+
+
+            <div class="main">
+                <iframe name="rightFrame" id="rightMain" src="{:U('Index/main')}" frameborder="no" 
+                        scrolling="auto" width="100%" height="auto" allowtransparency="true" >
+                </iframe>
+            </div>
+
+
+        </div> 
+        <div class="bottom">
+            <div id="bottom_bg">
+                {:C('ALL_COPY')}
+            </div>
+        </div>
+
+
+
+    </body>
+
+</html>
+

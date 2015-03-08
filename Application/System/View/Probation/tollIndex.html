@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>审核收费 - 显示</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：审核收费 -> 审核收费 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").toggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Probation/tollSearch')}">
+                <div style="text-align: center;display: none" id="search">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">用户</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="用户名" name="name" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">当前状态</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="1 使用 0 禁止" name="status" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">收费期限</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="试用期（月）" name="freemonth" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">每月收费</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="每月收费（￥）" name="every" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">总金额</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="总金额（￥）" name="sum" >
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">免费日期从</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  name="start"  class="form-control"  placeholder="日期格式：2014-11-10"   id="start">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input[id=start]").click(function () {
+                                        $('#start').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">至 </label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  name="end"  class="form-control"  placeholder="日期格式：2014-11-11"   id="end">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input").click(function () {
+                                        $('#end').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th style="width: 80px;text-align: center;">ID</th>
+                            <th >用户</th>
+                            <th style="text-align: center;">当前状态</th>
+                            <th style="text-align: center;">开始日期</th>
+                            <th style="text-align: center;">收费期限（月）</th>
+                            <th style="text-align: center;">停用日期</th>
+                            <th style="text-align: center;">每月收费</th>
+                            <th style="text-align: center;">总金额</th>
+
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" >
+                        <tr>
+                            <td style="text-align: center;">{$vo.id}
+                            </td>
+                            <td title="{$vo.name}" >{$vo.name|default="null"}</td>
+                            <td title="1 收费 0 免费" style="text-align: center;">
+                        <if condition="$vo.istoll eq 0 "> 
+                            <font style="color: red">免费</font>
+                            <else/>
+                            收费
+                        </if>
+                        </td>
+
+
+
+                        <td title="{$vo.tolldate}" style="text-align: center;">{$vo.tolldate|default="null"}</td>
+                        <td title="{$vo.tollmonth}" style="text-align: center;">{$vo.tollmonth|default="0"}</td>
+
+                        <td title="{$vo.tollend}" style="text-align: center;">
+                        <php>
+
+                            $ff=strtotime($vo['tollend']) -24*60*60- strtotime(date("Y-m-d"));
+                            if($ff<=0){
+
+                        </php>
+                        <font style='color: red;' title="免费明日结束，请提前缴费">{$vo.tollend}</font>
+                        <php>
+                            }else if(trim($vo['tollend'])==""){
+                            echo "null00";
+                            }else{
+                            echo $vo['tollend'];
+                            }
+
+                        </php>
+
+                        </td>
+                        <td title="{$vo.tollevery}" style="text-align: center;">{$vo.tollevery|default="0.00"}</td>
+                        <td title="{$vo.tollsum}" style="text-align: center;">{$vo.tollsum|default="0.00"}</td>
+
+                        <td style="text-align: center;width: 30px;">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['id']))}" role="button">修 改</a>
+
+                    </volist>
+
+
+                    </tr>
+                    </volist>
+
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$us|default="0.00"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center">总计</td>
+
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;color: red">{$sum|default="0.00"}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

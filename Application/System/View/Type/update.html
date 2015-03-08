@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新类型的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid" style="width: 80%;">
+        <div class="where">
+
+            当前位置 ：商品类型 -> 更新
+
+        </div>
+        <div style="margin-top: 30px">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Type/update')}">
+
+                <volist name="res" id="vo" empty="没有数据">
+
+                    <input type="hidden" name='tyid' value="{$vo.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">商品类型</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="用户名" name='type' value="{$vo.type}" required>
+                        </div>
+                    </div>
+
+                </volist>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg"> 更 新 </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

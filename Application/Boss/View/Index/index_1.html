@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/styleBoss.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.SuperSlide.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".sideMenu").slide({
+                    titCell: "h3",
+                    targetCell: "ul",
+                    defaultIndex: -100,
+                    effect: 'slideDown',
+                    delayTime: '500',
+                    trigger: 'click',
+                    triggerTime: '150',
+                    defaultPlay: true,
+                    returnDefault: false,
+                    easing: 'easeInQuint',
+                    endFun: function () {
+                        scrollWW();
+                    }
+                });
+
+            });
+
+
+
+
+        </script>
+        <title>{:C('HOME_PAGE')}</title>
+    </head>
+    <body >
+        <div class="top">
+            <div id="top_t">
+                <div id="logo" class="fl"></div>
+                <div id="photo_info" class="fr">
+                    <div id="photo" class="fl">
+                        <img src="__PUBLIC__/Image/a.png" alt="" width="60" height="60">
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="help_info">
+                            <!--  帮助   -->
+                            <a href="#" id="hp">&nbsp;</a>
+                            <!--  关于   -->
+                            <a href="#" id="gy">&nbsp;</a>
+                            <!--  退出   -->
+                            <a href="{:U('Index/unsetSess')}" id="out">&nbsp;</a>
+                        </div>
+                        <div class="info_center">
+                            <!--   当前用户   -->
+                            {$sess}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="overflow: auto;">
+            <div class="ahov">
+                <script>
+                    $(function () {
+                        $(".ahov dd").hover(function () {
+                            $(".side").show();
+                        });
+                        $(".ahov dd").mouseleave(function () {
+                            $(".side").hide();
+                        });
+                    });
+                </script>
+
+
+
+
+                <dd>
+                    <a > <button class="bbt" >显示菜单</button> </a>
+                    <div class="side">
+
+                        <div class="sideMenu" >
+
+                            <h3 title="" class="uul">店铺管理</h3>
+                            <ul>
+                                <li>
+                                    <a href="{:U('Shop/index')}" target="rightFrame" class="uul"> 显示     </a>
+                                </li>
+                                <li>
+                                    <a href="{:U('Shop/add')}" target="rightFrame" class="uul"> 添加     </a>
+                                </li>
+                            </ul>
+
+                            <!--      商品销售           -->
+                            <h3 title="" class="uul">商品销售</h3>
+                            <ul>
+                                <volist name="shop" id="xc">
+                                    <script>
+                                        $(function () {
+                                            $(".sales{$xc.id} xc").hover(function () {
+                                                $("#sales-{$xc.id}").show();
+                                            });
+                                            $(".sales{$xc.id} xc").mouseleave(function () {
+                                                $("#sales-{$xc.id}").hide();
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="sales{$xc.id}">
+                                        <li>
+                                        <xc>
+                                            <a href="#{$xc.id}" title="{$xc.shop}"> {$xc.shop|msubstr=0,6,"utf-8",false} </a>
+                                            <div class="threeSide" id="sales-{$xc.id}" style="display: none">
+                                                <a href="{:U('Sales/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 显示  </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('Sales/add',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 销售 </a>
+                                            </div>
+                                        </xc>
+                                        </li>
+                                    </div>
+                                </volist>
+                            </ul>
+                            <!---   采购入库     -->
+                            <h3 title="" class="uul">商品库</h3>
+                            <ul>
+                                <volist name="shop" id="xc">
+                                    <script>
+                                        $(function () {
+                                            $(".out{$xc.id} xc").hover(function () {
+                                                $("#out-{$xc.id}").show();
+                                            });
+                                            $(".out{$xc.id} xc").mouseleave(function () {
+                                                $("#out-{$xc.id}").hide();
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="out{$xc.id}">
+                                        <li>
+                                        <xc>
+                                            <a href="#{$xc.id}" title="{$xc.shop}"> {$xc.shop|msubstr=0,6,"utf-8",false} </a>
+                                            <div class="threeSide" id="out-{$xc.id}" style="display: none">
+                                                <a href="{:U('Out/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 显示  </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('Out/add',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 添加   </a>
+                                            </div>
+                                        </xc>
+                                        </li>
+                                    </div>
+                                </volist>
+                            </ul>
+
+                            <!---   商品信息     -->
+                            <h3 title="" class="uul">商品信息</h3>
+                            <ul>
+                                <volist name="shop" id="xc">
+                                    <script>
+                                        $(function () {
+                                            $(".goods{$xc.id} xc").hover(function () {
+                                                $("#goods-{$xc.id}").show();
+                                            });
+                                            $(".goods{$xc.id} xc").mouseleave(function () {
+                                                $("#goods-{$xc.id}").hide();
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="goods{$xc.id}">
+                                        <li>
+                                        <xc>
+                                            <a href="#{$xc.id}" title="{$xc.shop}"> {$xc.shop|msubstr=0,6,"utf-8",false} </a>
+                                            <div class="threeSide" id="goods-{$xc.id}" style="display: none;width: 268px;">
+                                                <a href="{:U('Goods/erpIndex',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 
+                                                    主库商品     </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('Goods/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 
+                                                    自有商品     </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('Goods/add',array('shopid'=>$xc['id']))}"  target="rightFrame" class="uul"> 
+                                                    添加自有商品     </a>
+                                            </div>
+                                        </xc>
+                                        </li>
+                                    </div>
+                                </volist>
+                            </ul>
+
+
+                            <!---   销售员管理     -->
+                            <h3 class="uul">销售员管理</h3>
+
+                            <ul>
+                                <volist name="shop" id="xc">
+                                    <script>
+                                        $(function () {
+                                            $(".user{$xc.id} xc").hover(function () {
+                                                $("#us-{$xc.id}").show();
+                                            });
+                                            $(".user{$xc.id} xc").mouseleave(function () {
+                                                $("#us-{$xc.id}").hide();
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="user{$xc.id}">
+                                        <li>
+                                        <xc>
+                                            <a href="#{$xc.id}" title="{$xc.shop}"> {$xc.shop|msubstr=0,6,"utf-8",false} </a>
+                                            <div class="threeSide" id="us-{$xc.id}" style="display: none">
+                                                <a href="{:U('User/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 显示  </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('User/add',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 添加   </a>
+                                            </div>
+                                        </xc>
+                                        </li>
+                                    </div>
+                                </volist>
+                            </ul>
+
+
+                            <!---   今日收益     -->
+                            <h3 title="" class="uul">今日收益</h3>
+
+
+                            <ul>
+                                <volist name="shop" id="xc">
+                                    <script>
+                                        $(function () {
+                                            $(".Revenue{$xc.id} xc").hover(function () {
+                                                $("#Revenue-{$xc.id}").show();
+                                            });
+                                            $(".Revenue{$xc.id} xc").mouseleave(function () {
+                                                $("#Revenue-{$xc.id}").hide();
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="Revenue{$xc.id}">
+                                        <li>
+                                        <xc>
+                                            <a href="#{$xc.id}" title="{$xc.shop}"> {$xc.shop|msubstr=0,6,"utf-8",false} </a>
+                                            <div class="threeSide" id="Revenue-{$xc.id}" style="display: none;width: 138px;">
+                                                <a href="{:U('Revenue/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 各商品     </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{:U('Retailer/index',array('shopid'=>$xc['id']))}" target="rightFrame" class="uul"> 各销售员     </a>
+                                            </div>
+                                        </xc>
+                                        </li>
+                                    </div>
+                                </volist>
+                            </ul>
+
+
+
+
+                            <ul>
+                                <li>
+                                    <a href="{:U('Revenue/index')}" target="rightFrame" class="uul"> 各商品     </a>
+                                </li>
+                                <li>
+                                    <a href="{:U('Retailer/index')}" target="rightFrame" class="uul"> 各销售员     </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+            </div>
+
+
+            <div class="main">
+
+                <iframe name="rightFrame" id="rightMain" src="{:U('Index/main')}" frameborder="no" 
+                        scrolling="auto" width="100%" height="auto" allowtransparency="true">
+                            
+                </iframe>
+            </div>
+
+        </div>   
+
+       
+
+    </body>
+
+</html>
+

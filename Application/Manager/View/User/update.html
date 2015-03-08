@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新用户的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/city.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="__PUBLIC__/JS/require.js"></script>
+        <![endif]-->
+
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+        <script src="__PUBLIC__/JS/validator.js"></script>
+        <script src="__PUBLIC__/JS/additional-methods.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/JS/messages_cn.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/JS/validate.js" type="text/javascript"></script>
+
+        <style>
+            .input-in{
+                padding: 10px;
+                border-color: #fff;
+                border: 0px;
+                vertical-align: middle;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+                margin-bottom: 10px;
+
+            }
+            .input-in-place{
+                margin-left: 0px;
+                margin-right:60px;
+                width: 306px;
+            }
+            .yuan-6{
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+            }
+        </style>
+
+
+    </head>
+    <body class="container-fluid" onload="onloadprovince()">
+        <div class="where">
+
+            当前位置 ：管理老板 -> 更新
+
+        </div>
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('User/update')}" id="userForm" >
+
+                <volist name="us" id="user" empty="">
+
+                    <input type="hidden" name='uid' value="{$user.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6" id="bar" placeholder="用户登录名" 
+                                   name='name' value="{$user.name}" readonly maxlength="6">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">密 码</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control yuan-6"  placeholder="密码 6~18 位" 
+                                   name="xcpwd" value="{$user.pwd}"  required="true"   maxlength="18">
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">姓 名</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6" id="inputEmail3" placeholder="真实姓名" name='real' 
+                                   value="{$user.realName}"  required="true" >
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">身份证</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6" id="IDcard" placeholder="身份证 16~18 位" 
+                                   name='IDcard' value="{$user.IDcard}"  required="true"   maxlength="18">
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">电话</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="tel" placeholder="手机号码 11 位" 
+                                   name='tel' value="{$user.tel}"  required="true"  maxlength="11">
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control yuan-6"  placeholder="Email" name='email' value="{$user.email}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">固定电话</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6"  placeholder="固定电话" name='phone' value="{$user.phone}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">传真</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6"  placeholder="传真" name='fax' value="{$user.fax}" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6"  placeholder="详细住址" 
+                                   name='address' value="{$user.address}"  required="true"  >
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">所在区域</label>
+                        <div class="col-sm-2">
+
+                            <select id="province"  name="province" class="form-control yuan-6" onchange="cityName(this.selectedIndex);" >
+                                <option value="">
+                                    -- 请选择省份 --
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select id="city" name="city" class="form-control yuan-6"  required="true">
+                                <option value="">
+                                    -- 请选择城市名 --
+                                </option>
+                            </select>
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-4">
+                            <textarea class="form-control yuan-6" rows="5" name="info" placeholder="备注">{$user.info}</textarea>
+                        </div>
+                    </div>
+
+
+                    {$user.group_id}
+                    <volist name="user['Group']" id="vo" empty="没有权限">
+
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label" >所属组</label>
+                            <div class="col-sm-6">
+                                <volist name="ug" id="ug">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="group_id"  <if condition="$ug.id eq $vo.id ">checked='checked'</if>
+                                        id="inlineRadio1"  value="{$ug.id}"  required="true" > {$ug.hint}
+                                    </label>
+
+                                </volist>
+                            </div>
+                        </div>
+                    </volist>
+                </volist>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg yuan-6" id="out-xian" >更 新</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </body>
+</html>

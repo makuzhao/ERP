@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-收益信息</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/main.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/colResizable-1.3.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/common.js"></script>
+
+
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 今日收益 -> 各商品 -> 搜索
+
+        </div>
+        <div id="table" class="mt10">
+            <div>
+                <a href="{$shop}" class="btn btn-primary btn-lg active yuan-10" role="button" id="bar"
+                   style="outline: none; blur:expression(this.onFocus=this.blur());">
+                    返回信息浏览
+                </a>
+            </div>
+
+            <div  style="min-height: 360px;margin-top: 10px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="tb-thead" style="font-size: 18px;">
+                            <th style="text-align: center;">收益</th>
+                            <th style="text-align: center;">商品</th>
+                            <th style="text-align: center;">数量</th>
+                            <th style="text-align: center;">条形码</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" empty="">
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+
+                        <td style="text-align: center;padding-left: 10px;">
+                            <b style="font-size: 26px;padding-left:  10px;">
+                                {$vo.total|default="0"}
+                            </b>
+
+                        </td>
+
+                        <td style="text-align: center;">{$vo.product|default="null"|str_replace=$pro,'<font style="color:red">' . $pro. '</font>', ###}</td>
+                        <td style="text-align: center;">{$vo.num|default="null"|str_replace=$num, '<font style="color:red">' . $num . '</font>', ###}</td>
+                        <td style="text-align: center;">{$vo.barcode|default="null"|str_replace=$bar, '<font style="color:red">' . $bar . '</font>', ###}</td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <!--          总计             -->            
+                    <tr class="footerTr">
+
+
+                        <td style="text-align: center;color: red">{$outsum}</td>
+                        <td style="text-align: center;color: red"></td>
+                        <td style="text-align: center">总计</td>
+                        <td style="text-align: center;color: red"></td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+            <div style="text-align: center;">
+                {$page}
+            </div>
+        </div>
+    </body>
+</html>

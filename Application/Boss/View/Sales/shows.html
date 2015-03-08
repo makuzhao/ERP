@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加销售的商品</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <style type="text/css">
+            #bg{ 
+                //display: none; 
+                position: absolute; 
+                top: 0%;  
+                left: 0%; 
+                width: 100%;
+                height: 100%; 
+                background-color: #636a6f; 
+                z-index:1001;  
+                -moz-opacity: 0.7; 
+                opacity:.70; 
+                filter: alpha(opacity=70);
+
+            }
+            #show{
+                //display: none; 
+                position: absolute; 
+                top: 10%;  
+                left: 22%;
+                width: 730px; 
+                min-height: 360px;
+                padding-top: 8px; 
+                border: 8px solid #E8E9F7;  
+                background-color: white;
+                z-index:1003;  
+                //overflow: auto;
+                border-radius: 10px;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+
+            }
+            #content{
+                min-height: 200px;
+                margin-top: 20px;
+            }
+            #success{
+                outline: none;
+                blur:expression(this.onFocus=this.blur());
+            }
+        </style>
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 0px;width: 90% ">
+            <!--   遮罩层显示    -->
+            <script language="javascript" type="text/javascript">
+                function showdiv() {
+                    document.getElementById("bg").style.display = "block";
+                    document.getElementById("show").style.display = "block";
+                }
+                function hidediv() {
+                    document.getElementById("bg").style.display = "none";
+                    document.getElementById("show").style.display = "none";
+                    window.location.href = "{:U('Sales/add')}";
+                }
+            </script>
+            <div style="margin-top: 0px;width: 800px">
+                <form class="form-horizontal" role="form" >
+                    <div id="bg" onclick="hidediv();">
+                        <!-- 点击阴影层同样关闭遮罩层效果 --> 
+                    </div>
+                    <div id="show">
+                        <div id="neirong" style="min-height: 200px;margin-top: 10px;margin-left: 20px;">
+                            <div style="float:left;width:330px;font-size: 20px;">
+                                <div class="form-group"> 
+                                    <label for="inputPassword3" class="col-sm-2 control-label">商品名</label> 
+
+                                    <div style="margin-top: 6px;margin-left: 13px;display: inline-block"> {$pro} </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">数&nbsp;&nbsp;量</label> 
+
+                                    <div style="margin-top: 6px;margin-left: 13px;padding-left: 13px;display: inline-block">{$num} </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">销售价</label>
+
+                                    <div style="margin-top: 6px;margin-left: 13px;display: inline-block"> {$pre} </div>
+
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="inputPassword3" class="col-sm-2 control-label">销售额</label> 
+
+                                    <div style="margin-top: 6px;margin-left: 13px;display: inline-block"> {$sum} </div>
+
+                                </div>
+                            </div>
+                            <div style="float: right;height: 300px;width: 300px;font-size: 50px;color: red; text-align: center;font-weight: bolder">                     
+                                <font  style="color: #337cf9">{$real}</font>
+                                <br>
+                                营业额(￥) 
+                                <br> 
+                                {$pretotal}
+                            </div>
+                        </div>
+                        <div style="clear: both;text-align: center;margin-bottom: 20px;">
+                            <div >
+                                <a  href="{:U('Sales/add',array('shopid'=>$shopid))}" class="btn btn-primary btn-lg out-xian" role="button" id="success" >继续交易</a>
+                            </div>
+                            <script>
+                                $("#success").focus();
+                            </script>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

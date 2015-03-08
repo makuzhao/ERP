@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>查看商品信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Editor/kindeditor.js"></script>
+        <script src="__PUBLIC__/Editor/lang/zh-CN.js"></script>
+        <script>
+            KindEditor.ready(function (K) {
+                window.editor = K.create('#editor_id');
+            });
+        </script>
+
+    </head>
+    <body class="container">
+        <div class="where">
+
+            当前位置 ：商品销售 -> 查看商品信息
+
+        </div>
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" >
+
+                <volist name="shop" id="vo" empty="没有数据">
+
+                    <input type="hidden" >
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">商家</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id='bar' placeholder="商家" style="border: 1px;background-color: #ffffff;" value="{$vo.company}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="地址" style="border: 1px;background-color: #ffffff;"  value="{$vo.address}" readonly>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系人</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="联系人" style="border: 1px;background-color: #ffffff;"  value="{$vo.boss}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="电话" style="border: 1px;background-color: #ffffff;" value="{$vo.tel}" readonly>
+                        </div>
+                    </div>
+
+
+                </volist>
+
+
+
+            </form>
+
+
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,218 @@
+@CHARSET "UTF-8";
+html, body { 
+    height:100%; overflow:hidden;
+    background-color: #7dcfff;
+}
+.top {
+    position:absolute; left:0; top:0; right:0;
+    height:82px;
+    background: #07c url('../Image/login/11.png') 0px 0px repeat-x;
+}
+.side {
+    position:absolute; 
+    left:33px; 
+    top:123px;
+    bottom:25px;
+    width:160px;  // 宽度
+
+    overflow: auto; 
+    background:#e1e2e3 url('../Image/side_bg.gif') 0px 0px repeat-y;
+    z-index: 100;
+    display: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("../../PIE/PIE.htc");
+
+
+}
+.main {
+    position:absolute; 
+    left:35px; 
+    top:82px; 
+    bottom:25px; 
+    right:0px;
+    width:auto;
+    //background-color:#fff;
+    z-index:2;
+    overflow:hidden;
+    background-color: #7dcfff;
+}
+.bottom {
+    position:absolute; left:0; bottom:0; right:0;
+    height:25px;
+    background-color:#456;
+}
+.main iframe {
+    width:100%; 
+    height:100%;
+}
+
+/*------ for ie6 ------*/
+html { *padding:125px 0 25px 0;}
+.top { *height:125px; *margin-top:-125px;}
+.side { *height:100%; *float:left; *margin-right:-206px;}
+.main { *height:100%; *margin-left:160px;}
+.bottom { *height:25px;}
+.top, .side, .main, .bottom {*position:relative; *top:0; *right:0; *bottom:0; *left:0;}
+
+#top_t{
+    height: 81px;
+}
+#logo{
+    width: 352px;
+    height: 81px;
+    background: url('../Image/login/11.png') 0px 0px no-repeat;
+}
+#top_t #photo_info{
+    width:280px;
+    height: 81px; 
+}
+#photo_info #photo{
+    padding-top: 15px;
+}
+#photo_info #photo img{
+    width:50px;
+    height: 50px;
+    border:2px solid #0c4169;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0.9;
+    filter:alpha(opacity=90); 
+   // behavior: url("../../PIE/PIE.htc");
+}
+
+#photo_info #base_info{
+    width: 210px;
+    height: 81px;
+    background: url('../Image/user_info.png') 0px 0px no-repeat;
+}
+#base_info .help_info{
+    height: 22px;
+    padding-top: 13px;
+}
+#base_info .help_info a{
+    display: inline-block;
+    width: 46px;
+    height: 19px;
+}
+#base_info .help_info #hp{
+    margin-left: 40px;
+}
+#base_info .help_info #gy{
+    margin-left: 5px;
+}
+#base_info .help_info #out{
+}
+#base_info .info_center{
+    width: 151px;
+    height: 25px;
+    padding-top:10px; 
+    padding-left: 34px;
+    color:#fff;
+}
+#base_info .info_center #nt{
+    padding-left: 30px;
+    font-size: 12px;
+}
+#base_info .info_center #notice{
+    background: red;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 4px;
+    opacity: 0.8;
+    filter:alpha(opacity=80); 
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #fff;
+    behavior: url("../../PIE/PIE.htc");
+}
+#side_here{
+    height: 44px;
+    background:#fff url('../Image/here.gif') 0px 0px repeat-x;
+}
+#side_here_l{
+    width: 180px;
+    height: 44px;
+    background: url('../Image/side_top.gif') 0px 0px no-repeat;
+}
+#here_area{
+    height: 44px;
+    line-height: 44px;
+    padding-left: 20px;
+}
+.bottom #bottom_bg{
+    border-top: 1px solid #c9c9c9;/*#e8f2f6*/
+    height: 24px;
+    line-height: 24px;
+    background: url('../Image/bottom_bg.png') 0px 0px;
+    text-align: center;
+}
+
+/*左侧菜单*/
+.sideMenu{ 
+    position:absolute;
+    left: 5px;
+    top:5px;
+    width: 150px; /// 宽度
+
+}
+.sideMenu h3{ 
+    height:38px; line-height:38px; cursor:pointer;
+    font:normal 14px/38px "Microsoft YaHei";
+    font-weight: bold;
+    background: url('../Image/side_h3.gif') 0px 0px no-repeat;
+    padding-left: 45px;
+}
+.sideMenu h3 em{ float:right; display:block; width:40px; height:32px;   background:url('../Image/icoAdd.png') 16px 12px no-repeat; cursor:pointer; }
+.sideMenu h3.on { background: url('../Image/side_h3_on.gif') 0px 0px no-repeat; }
+.sideMenu ul{ display:none; /* 默认都隐藏 */ }
+.sideMenu ul li{
+    height: 31px;
+    line-height: 31px;
+    font:normal 13px/31px "Microsoft YaHei";
+    padding-left: 50px;
+    background: url('../Image/side_li.gif') 40px 13px no-repeat;
+}
+.sideMenu ul li.on{
+    background: url('../Image/side_li_on.png') 0px 0px no-repeat;
+    color: #fff;
+}
+.scroll{ position:absolute; left:2px; bottom:25px; width:60px; height:42px;height:42px;overflow:hidden; display:none;z-index: 3;}
+.scroll a {display: inline-block;zoom: 1;}
+.scroll a{ background:url('../Image/scroll_bg.png') no-repeat left top; width:48px; height:17px;margin: 0px 5px;}
+.scroll a:hover{ background-position:left bottom;}
+.scroll a.next{background-position:right top;}
+.scroll a.next:hover{ background-position:right bottom;}
+
+
+.bbt{
+
+    width: 26px;
+    height: 200px;
+    margin-left: 2px;
+    margin-top: 230px;
+    background-color: #50b3f9;
+    color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px #1a2ef3;
+    font-size: 20px;
+    //  behavior: url("../../PIE/PIE.htc");
+
+}
+.uul{
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+}
+

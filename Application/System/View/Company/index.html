@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商家基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });</script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商家 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $("button").click(function () {
+                    $("#search").toggle();
+                });
+            });</script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Company/searching')}">
+                <div style="text-align: center;display: none" id="search">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">商家</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商家" name="com" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">法人</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="法人名" name="bos" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">法人电话</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="法人电话" name="bostel" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">联系人</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="联系人" name="people" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">联系人电话</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="联系人电话" name="peotel" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">地址</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="地址" name="addr" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">电话</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="电话" name="tel" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">官网</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="官网" name="web" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">备注</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="备注" name="info" >
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+                </div>
+
+
+
+            </form>
+
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th >ID</th>
+                            <th >商家</th>
+                            <th >法人</th>
+                            <th >法人电话</th>
+                            <th >联系人</th>
+                            <th >联系人电话</th>
+                            <th >地址</th>
+                            <th >电话</th>
+                            <th >官网</th>
+                            <th >备注</th>
+
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="width: 6%">{$vo.id}
+                            </td>
+                            <td title="{$vo.company}" style="width: 12%">{$vo.company|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.boss}" style="width: 6%" >{$vo.boss|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.bostel}" style="width: 10%" >{$vo.bostel|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.people}" style="width: 6%" >{$vo.people|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.peotel}" style="width: 10%" >{$vo.peotel|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.address}" style="width: 20%" >{$vo.address|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.tel}" style="width: 10%" >{$vo.tel|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.website}" style="width: 14%">{$vo.website|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.info}" style="width: 8%">{$vo.info|msubstr=0,30,"utf-8",false}</td>
+
+
+                            <td style="width: 50px">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/update',array('comid'=>$vo['id']))}" role="button">修 改</a>   
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" id="del" onclick ="return del_sure()"> 删 除 </a>   
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class ="footerTr" >
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center;">总计</td>
+
+
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 26px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 26px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

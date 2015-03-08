@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品下限提示信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").toggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Presell/conSearch')}">
+                <div style="text-align: center;display: none" id="search" >
+                    <div class="form-group">
+
+                        <label class="col-sm-2 control-label" style="margin-top: 10px;">条形码</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商品条形码" name="bar" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">商品名</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商品名" name="product" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-sm-2 control-label" style="margin-top: 0px;">首字母</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="统一绿茶 TYLC" name="letter" >
+                        </div>
+
+
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">下限</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="下限值" name="confine" >
+                        </div>
+
+
+                    </div>
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+
+                        <td style="text-align: center">条形码</td>
+                        <td style="text-align: center">商品名</td>
+                        <td style="text-align: center">库存</td>
+                        <td style="text-align: center">下限值</td>
+                        <td style="text-align: center" >提示</td>
+                        <td style="text-align: center" >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="text-align: center">{$vo.barcode}
+
+                            </td>
+                            <td title="{$vo.product}" style="text-align: center">{$vo.product|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.total}" style="text-align: center" >{$vo.total|default="0"}</td>
+                            <td title="{$vo.confine}" style="text-align: center">{$vo.confine|default="0"}</td>
+
+                            <td title="{$vo.k}" style="text-align: center">
+                        <if condition="$vo.k elt 0 ">
+                            <font style="font-size: 18px;color: red">{$vo.k|default="0"}</font>
+                            &nbsp;进货
+                            <else/>
+                            {$vo.k}
+
+                        </if>
+                        </td>
+
+                        <td style="text-align: center">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Presell/update',array('comid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs"  href="{:U('Presell/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作"  role="button">删 除</a>
+                        </td>
+
+
+                        </tr>
+                    </volist>
+                    <tr class="footerTr">
+                        <td style="text-align: center">{$id|default="0"}</td>
+                        <td style="text-align: center">总计</td>
+
+
+                        <td style="text-align: center;"></td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red"></td>
+                        <td >&nbsp;</td>
+
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

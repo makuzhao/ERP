@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>用户信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script src="__PUBLIC__/JS/city.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid" style="width: 1580px;" onload="onloadprovince()">
+        <div class="where">
+
+            当前位置 ：管理老板 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").toggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('User/searching')}">
+                <div style="text-align: center;display: none" id="search">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">用户名</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="登录名" name="name" >
+                        </div>
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">姓名</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="真实姓名" name="real" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">身份证</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="身份证号码" name="IDcard" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">电话</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="联系电话" name="tel" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top:0px;">试用</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="1 试用 0 禁用，例：1" name="free" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">收费</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="1 收费 0 免费，例：1" name="toll" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-1 control-label" style="margin-top:0px;">邮箱</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="email"  class="form-control" id='bar' placeholder="Email" name="email" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">固定电话</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="固定电话" name="phone" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">地址</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="地址" name="address" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">传真</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="传真" name="fax" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">备注</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="备注" name="info" >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">登陆时间 从</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  name="start"  class="form-control"  placeholder="日期格式：2014-11-10"   id="start">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input[id=start]").click(function () {
+                                        $('#start').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top:0px;">至</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  name="end"  class="form-control"  placeholder="日期格式：2014-11-11"   id="end">
+                            <script>
+                                $(document).ready(function () {
+                                    $("input").click(function () {
+                                        $('#end').datepicker();
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-1 control-label">所在区域</label>
+                        <div class="col-sm-2">
+                            <select id="province"  name="province" class="form-control" onchange="cityName(this.selectedIndex);" >
+                                <option value="">
+                                    -- 请选择省份 --
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select id="city" name="city" class="form-control" >
+                                <option value="">
+                                    -- 请选择城市名 --
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+
+                </div>
+
+            </form>
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th style="width: 40px;">ID</th>
+                            <th style="width: 80px">用户名</th>
+                            <th >密码</th>
+                            <th title="真实姓名">姓名</th>
+                            <th style="width: 100px">身份证</th>
+                            <th style="width: 60px">电话</th>
+                            <th style="text-align: center;" title="当前试用状态">试用</th>
+                            <th style="text-align: center;" title="当前收费状态">收费</th>
+                            <th  style="width: 80px">区域</th>
+                            <th >邮箱</th>
+                            <th >固定电话</th>
+                            <th >传真</th>
+                            <th style="width: 160px">地址</th>
+
+                            <th >数据库</th>
+                            <th style="text-align: center;">注册时间</th>
+                            <th style="text-align: center;">上次登录</th>
+
+                            <th >备注</th>
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" empty="空白">
+                        <tr>
+                            <td >{$vo.id}
+                            </td>
+                            <td title="{$vo.name}">{$vo.name|default="null"}</td>
+                            <td title="{$vo.pwd}" style="width: 100px">{$vo.pwd|default="null"}</td>
+                            <td title="{$vo.realName}"  style="width: 100px">{$vo.realName|default="null"}</td>
+                            <td title="{$vo.IDcard}"  style="width: 100px">{$vo.IDcard|default="null"|subStr=0,18}</td>
+                            <td title="{$vo.tel}">{$vo.tel|default="null"}</td>
+
+                            <td style="width: 60px;text-align: center" title="当前使用状态">
+
+                        <if condition="$vo.isfree eq 0 "> 
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/freeUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击试用">禁 用</a>
+                            <else/>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/freeUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击禁用">试 用</a>
+                        </if>
+                        </td>
+                        <td style="width: 60px" title="当前收费状态">
+                        <if condition="$vo.istoll eq 0 "> 
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击收费">免 费</a>
+                            <else/>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击免费">收 费</a>
+                        </if>
+                        </td>
+
+                        <td style="width: 80px" title="{$vo.area}">{$vo.area|default="null"}</td>
+
+                        <td title="{$vo.email}">{$vo.email|default="null"}</td>
+                        <td title="{$vo.phone}">{$vo.phone|default="null"}</td>
+                        <td title="{$vo.fax}">{$vo.fax|default="null"}</td>
+                        <td style="width: 160px" title="{$vo.address}">{$vo.address|default="null"|msubstr=0,20}</td>
+
+
+                        <td title="{$vo.dbname}">{$vo.dbname|default="null"}</td>
+
+                        <td style="text-align: center;width: 100px;">{$vo.regtime|default="null"}</td>
+                        <td style="text-align: center;width: 100px;">{$vo.latetime|default="null"}</td>
+
+                        <td title="{$vo.info}">{$vo.info|msubstr=0,3}</td>
+                        <td style="text-align: center;width: 30px;">
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/update',array('uid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/delete',array('uid'=>$vo['id']))}" role="button" title="删除不可恢复，谨慎操作" id="del" onclick ="return del_sure()">
+                                删 除
+                            </a>
+                        <php>
+                            if($vo['dbname']==""){
+                        </php>
+                        <a class="btn btn-primary  btn-xs" href="{:U('User/addDB',array('id'=>$vo['id']))}" role="button" id="del">建库</a>
+                        <php>}
+                        </php>
+                        </td>
+                    </volist>
+
+
+                    </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$uscount}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center;">总计</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

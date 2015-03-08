@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-预售价信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Presell/index')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td style="width: 60px;">ID</td>
+                        <td >条形码</td>
+                        <td style="width: 60px;">数量</td>
+                        <td >预售价</td>
+                        <td style="width: 60px;">下限</td>
+                        <td style="width: 60px;">操作</td>
+                    </tr>
+                    <volist name="list" id="vo">
+
+                        <tr>
+                            <td style="width: 10%">{$vo.id}
+                               
+                            </td>
+                            <td title="{$vo.barcode}" style="width: 30%">{$vo.barcode|msubstr=0,30,"utf-8",false|str_replace=$bar, '<font style="color:red">' . $bar . '</font>', ###}</td>
+                            <td title="{$vo.num}" style="width: 20%" >{$vo.num|msubstr=0,30,"utf-8",false|str_replace=$num, '<font style="color:red">' . $num . '</font>', ###}</td>
+                            <td title="{$vo.presell}" style="width: 20%">{$vo.presell|msubstr=0,30,"utf-8",false|str_replace=$pre, '<font style="color:red">' . $pre . '</font>', ###}</td>
+
+                            <td title="{$vo.confine}" style="width: 10%">{$vo.confine|msubstr=0,30,"utf-8",false|str_replace=$confine, '<font style="color:red">' . $confine . '</font>', ###}</td>
+                            <td style="width: 10%">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Presell/update',array('comid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs" href="{:U('Presell/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button">删 除</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    <tr class="footerTr">
+                        <td >{$id|default="0"}</td>
+                        <td style="text-align: center">总计</td>
+
+
+                        <td style="text-align: center;"></td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red"></td>
+                        <td >&nbsp;</td>
+
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

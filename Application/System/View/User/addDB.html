@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加用户的表单</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 30px;width: 90%">
+            <form class="form-horizontal" role="form" method="post" action="{:U('User/addDB')}">
+                <input type="hidden" class="form-control" id="inputEmail3" placeholder="数据库名与用户名一致" name='id' value="{$id}" >
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">数据库名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="数据库名与用户名一致" name='dbname' value="{$dbname}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg">创 建</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

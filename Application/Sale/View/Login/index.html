@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+        <title> {:C('HOME_PAGE')} </title>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="__PUBLIC__/CSS/login.css" rel="stylesheet" type="text/css"/>
+
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/login.js"></script>
+        <script src="__PUBLIC__/JS/respond.js"></script>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+    </head>
+
+    <body class="login">
+
+        <div class="login-log">
+            <form  method="post" action="{:U('Login/index')}">
+                <div class="login-for">
+                    <label class="fontColor">用户名&nbsp;</label>
+
+                    <input name="name" type="text" id="login" class="login-in yuan-10" style="background-color: #fff;background: url('__PUBLIC__/Image/login/44.png') no-repeat;padding-left: 33px;vertical-align: middle;
+                           border-radius: 10px;
+                           -webkit-border-radius: 10px;
+                           -moz-border-radius: 10px;
+                           behavior: url('__PUBLIC__/CSS/PIE.htc');
+                           outline: none; blur:expression(this.onFocus=this.blur());">
+                    <script>
+                        $("#login").focus();
+                    </script>
+                </div>
+                <div class="login-for">
+                    <label class="fontColor">&nbsp;密&nbsp; 码 &nbsp; </label>
+
+                    <input name="pwd" type="password" class="login-in yuan-10" style="background-color: #fff;background: url('__PUBLIC__/Image/login/33.png') no-repeat;padding-left: 33px;padding-top:3px;vertical-align: middle;
+                           border-radius: 10px;
+                           -webkit-border-radius: 10px;
+                           -moz-border-radius: 10px;
+                           behavior: url('__PUBLIC__/CSS/PIE.htc');
+                           outline: none; blur:expression(this.onFocus=this.blur());">
+                </div>
+                <div class="login-for">
+                    <label class="fontColor">验证码&nbsp;</label>
+                    <script>
+                        function showbar() {
+                            var bar = $('#vercode').val();
+                            $.ajax({
+                                type: 'get',
+                                url: '__URL__/checkVer/code/' + bar,
+                                success: function (data) {
+                                    $('#res').html(data);
+                                }
+                            });
+                        }
+                    </script>
+                    <input name="verify" type="text"  id="vercode" onkeyup="showbar()" class="login-in yuan-10"  
+                           style="background-color: #fff;background: url('__PUBLIC__/Image/login/33.png') no-repeat;
+                           padding-left: 33px;padding-top:3px;
+                           vertical-align: middle;
+                           border-radius: 10px;
+                           -webkit-border-radius: 10px;
+                           -moz-border-radius: 10px;
+                           behavior: url('__PUBLIC__/CSS/PIE.htc');
+                           outline: none; blur:expression(this.onFocus=this.blur());">
+
+                    <span id='res' >
+
+                    </span>
+                </div>
+                <div class="login-for" style="text-align: center;">
+
+                    <script>
+                        function changeimg() {
+                            var time = new Date().getTime();
+                            document.getElementById("verify").src = "__APP__/Sale/Login/verify/" + time;
+                            return false;
+                        }
+                    </script>
+
+                    <img src="{:U('Login/verify')}"  onclick="this.src = '__APP__/Sale/Login/verify/' + Math.random()"  id="verify"  name="verify" title=" 点 击 刷 新 " 
+                         style="width: 200px;height: 40px;
+                         border-radius: 10px;
+                         -webkit-border-radius: 10px;
+                         -moz-border-radius: 10px;
+                         behavior: url('__PUBLIC__/CSS/PIE.htc');">
+                </div>
+                <div class="login-for" style="text-align: center;font-size: 23px;font-weight: bolder;padding-top: 3px;">
+
+                    <button type = "submit" class = "btn btn-default btn-lg yuan-10" 
+                            style="border-radius: 10px;
+                            -webkit-border-radius: 10px;
+                            -moz-border-radius: 10px;
+                            behavior: url('__PUBLIC__/CSS/PIE.htc');
+                            outline: none; blur:expression(this.onFocus=this.blur());"> 登 陆 </button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

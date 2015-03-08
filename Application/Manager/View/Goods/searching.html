@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-商品信息</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商品信息 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Goods/index')}" class="btn btn-primary btn-lg active yuan-6" role="button" id="bar"
+                   style="outline: none; blur:expression(this.onFocus=this.blur());">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr class="tb-thead">
+                            <th >ID</th>
+                            <th >商品名</th>
+                            <th >首字母</th>
+                            <th >类型</th>
+                            <th >条形码</th>
+                            <th >规格</th>
+                            <th >建议售价</th>
+                            <th >计量单位</th>
+                            <th >商品描述</th>
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+                        <td style="width: 5%">{$vo.id}
+
+                        </td>
+                        <td title="{$vo.product}" style="width: 15%">
+                            {$vo.product|str_replace=$pro, '<font style="color:red">' . $pro . '</font>', ###}
+                        </td>
+                        <td title="{$vo.letter}" style="width: 10%">
+                            {$vo.letter|str_replace=$let, '<font style="color:red">' . $let . '</font>', ###}
+                        </td>
+                        <td title="{$vo.type}" style="width: 7%">
+                            {$vo.type|str_replace=$type, '<font style="color:red">' . $type . '</font>', ###}
+                        </td>
+                        <td title="{$vo.barcode}" style="width: 7%">
+                            {$vo.barcode|str_replace=$bar, '<font style="color:red">' . $bar . '</font>', ###}
+                        </td>
+                        <td title="{$vo.standard}" style="width: 20%">
+                            {$vo.standard|str_replace=$stand, '<font style="color:red">' . $stand . '</font>', ###}
+                        </td>
+                        <td title="{$vo.price}" style="width: 7%">
+                            {$vo.price|str_replace=$price, '<font style="color:red">' . $price . '</font>', ###}
+                        </td>
+                        <td title="{$vo.unit}" style="width: 7%;text-align: center">
+                            {$vo.unit|str_replace=$unit, '<font style="color:red">' . $unit . '</font>', ###}</td>
+                        <td title="{$vo.info|strip_tags}" style="width: 30%">
+                            {$vo.info|str_replace=$info, '<font style="color:red">' . $info . '</font>', ###|trim|strip_tags|msubstr=0,38,"utf-8",false}
+                        </td>
+
+                        <td style="width: 5%;text-align: center">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Goods/update',array('goid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Goods/delete',array('goid'=>$vo['id']))}" title="删除不可恢复，谨慎操作"  role="button" id="del" onclick ="return del_sure()"> 删 除 </a>
+                        </td>
+
+
+                        </tr>
+
+
+                    </volist>
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center;">总计</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

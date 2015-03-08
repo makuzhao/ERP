@@ -1,0 +1,73 @@
+
+<script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+<script>
+    function ddd(obj, sType) {
+        var oDiv = document.getElementById(obj);
+        if (sType == 'show') {
+            oDiv.style.display = 'block';
+        }
+        if (sType == 'hide') {
+            oDiv.style.display = 'none';
+        }
+
+    }
+
+    function oldd() {
+        $('#aa').show();
+    }
+    function oldx() {
+        $('#aa').hide();
+    }
+</script> 
+
+
+<button  id="old" onmouseover="oldd()"  onmouseout="oldx()"  >显示</button> 
+<button  onmouseover="oldd()"     >
+    显示菜单 0</button>
+
+<button onmouseover="ddd('bb', 'show');" onmouseout="ddd('bb', 'hide');"   >
+    显示菜单</button>
+
+
+
+<div style="display:none;width: 200px;height: 100px;border: 1px  #1a2ef3  ;z-index: 1000" id="aa" onmouseover="ddd('aa', 'show');" onmouseout="ddd('aa', 'hide');"> 
+    <h3 title="滚动鼠标" class="uul" >商品销售</h3>
+    <ul>
+        <li>
+            <a href="{:U('Sales/add')}" target="rightFrame" class="uul" onmouseover="oldd()"> 销售     </a>
+        </li>
+        <li>
+            <a href="{:U('Sales/index')}" target="rightFrame" class="uul" > 今日单子   </a>
+        </li>
+
+
+    </ul>
+
+    <h3 title="滚动鼠标" class="uul">商品库</h3>
+    <ul >
+        <li>
+            <a href="{:U('Out/index')}" target="rightFrame" class="uul"> 显示     </a>
+        </li>
+        <li>
+            <a href="{:U('Out/add')}" target="rightFrame" class="uul"> 进货   </a>
+        </li>
+
+
+    </ul>
+    <ul>
+        <li><a href="#">bb </a> </li>
+        <li><a href="#">bb </a> </li>
+
+        <li><a href="#">bb </a> </li>
+        <li><a href="#">bb </a> </li>
+        <li><a href="#">bb </a> </li>
+    </ul>
+
+</div> 
+<div style="display:none;" id="bb" onmouseover="ddd('bb', 'show');" onmouseout="ddd('bb', 'hide');"> 
+    <a href="#">bb </a> 
+    <a href="#">bb </a> 
+    <a href="#">bb </a> 
+    <a href="#">bb </a> 
+</div> 
+</body>

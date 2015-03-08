@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新类型的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-
+        datepicker.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+        <script src="__PUBLIC__/JS/validator.js"></script>
+        <script src="__PUBLIC__/JS/additional-methods.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/JS/messages_cn.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/JS/validate.js" type="text/javascript"></script>
+
+        <style>
+            .input-in{
+                padding: 10px;
+                border-color: #fff;
+                border: 0px;
+                vertical-align: middle;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+                margin-bottom: 10px;
+
+            }
+            .input-in-place{
+                margin-left: 0px;
+                margin-right:60px;
+                width: 306px;
+            }
+            .yuan-6{
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+            }
+        </style>
+
+    </head>
+    <body class="container-fluid" style="width: 80%;">
+        <div class="where">
+
+            当前位置 ：商品类型 -> 更新
+
+        </div>
+        <div style="margin-top: 30px">
+
+            <form class="form-horizontal" role="form" method="post" id="valForm" action="{:U('Type/update')}">
+
+                <volist name="res" id="vo" empty="没有数据">
+
+                    <input type="hidden" name='tyid' value="{$vo.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">商品类型
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control yuan-6" 
+                                   id="inputEmail3" placeholder="商品类型" name='type' value="{$vo.type}"  required="true" >
+                        </div>
+                        <div class="xing-red">*</div>
+                    </div>
+
+                </volist>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg yuan-6 " id="out-xian">
+                            更 新 
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <script>
+            var testElement = document.createElement('input');
+            /* 检测浏览器是否支持 required 属性
+             * 为不支持 required 属性的浏览器写兼容代码
+             */
+            var requiredSupported = 'required' in testElement && !/Version\/[\d\.]+\s*Safari/i.test(navigator.userAgent);
+            if (!requiredSupported) {
+                document.getElementsByTagName("form")[0].onsubmit = function (e) {
+                    var inputs = document.getElementsByTagName('input');
+                    for (var n = 0; n < inputs.length; n++) {
+                        var input = inputs[n];
+                        var placeholder = input.placeholder ? input.placeholder : input.getAttribute('placeholder');
+                        if (!placeholder)
+                            continue;
+                        if (!input.value || (input.value == placeholder)) {
+                            alert(placeholder + ',此处不能为空 ');
+                            e = e || window.event;
+                            e.preventDefault && e.preventDefault();
+                            e.returnValue = false;
+                            break;
+                        }
+                    }
+                };
+            }
+
+
+            </script>
+
+
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新出库商品信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <style>
+            .input-in{
+                padding: 10px;
+                border-color: #fff;
+                border: 0px;
+                vertical-align: middle;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+                margin-bottom: 10px;
+
+            }
+            .input-in-place{
+                margin-left: 0px;
+                margin-right:60px;
+                width: 306px;
+            }
+            .yuan-6{
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+            }
+        </style>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 商品信息 -> 主库商品 -> 入库
+
+        </div>
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Goods/erpAdd')}" onsubmit="return che()">
+                <input type="text" name="shopid" value="{$shopid}" style="display: none">
+                <volist name="resgo" id="vo">
+                    <input type="hidden" name="outid" value="{$vo.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6"   name="barcode" value="{$vo.barcode}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商品</label>
+                        <div class="col-sm-5">
+                            <input class="form-control yuan-6" type="text" 
+                                   name="product" value="{$vo.product}"  readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">首字母</label>
+                        <div class="col-sm-5">
+                            <input class="form-control yuan-6" type="text" 
+                                   name="letter" value="{$vo.letter}"  readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">建议售价</label>
+                        <div class="col-sm-5">
+                            <input class="form-control yuan-6" type="text"
+                                   name="price" value="{$vo.price}"  readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">数量</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" id="bar" placeholder="进货数量"
+                                   name='outamount'    required="true"  >
+                        </div>
+                        <div class="xing-red" style="margin-left: -216px ;padding-top: 3px;">*</div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">进货价</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" id="price" placeholder="进货价" 
+                                   name='outprice'     required="true"  >
+                        </div>
+                        <div class="xing-red" style="margin-left: -216px ;padding-top: 3px;">*</div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">销售价</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" id="presell" placeholder="销售价"
+                                   name='outpresell'  required="true"  >
+                        </div>
+                        <div class="xing-red" style="margin-left: -216px ;padding-top: 3px;">*</div>
+                    </div>
+                </volist>
+                <script>
+                    function che() {
+                        // 非零开头的数字
+                        var zimu = /^([1-9][0-9]*)$/;
+                        if ($('#bar').val() == "") {
+                            alert('数量不能为空');
+                            $('#bar').focus();
+                            return false;
+                        }
+                        if (!zimu.test($('#bar').val())) {
+                            alert('数量填写错误');
+                            $('#bar').focus($('#bar').val());
+                            return  false;
+                        }
+                        // 验证有1-2位小数的正实数
+                        var price = /^[0-9]+(.[0-9]{1,2})?$/;
+                        if ($('#price').val() == "") {
+                            alert('进货价不能为空');
+                            $('#price').focus();
+                            return false;
+                        }
+                        if (!price.test($('#price').val())) {
+
+                            alert('进货价填写错误，保留两位小数');
+                            $('#price').focus($('#price').val());
+                            return  false;
+                        }
+                        // 验证有1-2位小数的正实数
+                        var presell = /^[0-9]+(.[0-9]{1,2})?$/;
+                        if ($('#presell').val() == "") {
+                            alert('进货价不能为空');
+                            $('#presell').focus();
+                            return false;
+                        }
+                        if (!presell.test($('#presell').val())) {
+                            alert('进货价填写错误，保留两位小数');
+                            $('#presell').focus($('#presell').val());
+                            return  false;
+                        }
+                        return true;
+                    }
+
+                </script>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg yuan-6" id="out-xian">入 库 </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </body>
+</html>

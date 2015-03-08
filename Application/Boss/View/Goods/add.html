@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加自有商品</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 商品信息 -> 添加自有商品
+
+        </div>
+        <div style="margin-top: 30px">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Goods/add')}">
+                <input type='text' name="shopid" value="{$shopid}" style='display:none'/>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">条形码</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control yuan-6" id='bar' placeholder="条形码" 
+                               name='barcode' onkeyup="showbar()"  onchange ="showbar()" shopp='{$shopid}'    required="true" >
+                    </div>
+                    <div class="xing-red">*</div>
+                </div>
+
+                <script type="text/javascript">
+                    function showbar() {
+                        var bar = $('#bar').val();
+                        var shopp = $("#bar").attr("shopp");
+
+                        $.ajax({
+                            type: 'get',
+                            url: '__URL__/checkBar/code/' + bar + "/shopid/" + shopp,
+                            success: function (data) {
+                                $('#barcode').html(data);
+                            }
+                        });
+                    }
+                </script>
+
+                <div id="barcode">
+
+                </div>
+            </form>
+            <script>
+                function che() {
+                    var shuzi = /^[0-9]*[1-9][0-9]*$/;  // 纯数字
+                    if ($('#bar').val() == "") {
+                        alert('条形码不能为空');
+                        $('#bar').focus();
+                        return false;
+                    }
+                    if (shuzi.test($('#bar').val())) {
+                        return  true;
+                    } else {
+                        alert('条形码只能是纯数字或纯字母');
+                        $('#bar').focus($('#bar').val());
+                        return  false;
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>

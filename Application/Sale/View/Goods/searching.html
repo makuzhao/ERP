@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-商品信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Goods/index')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td >ID</td>
+                        <td >商品名</td>
+                        <td >首字母</td>
+                        <td >类型</td>
+                        <td >条形码</td>
+                        <td >规格</td>
+                        <td >计量单位</td>
+                        <td >商品描述</td>
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo">
+
+                        <tr>
+                            <td style="width: 5%">{$vo.id}
+                                <a href="{:U('Goods/delete',array('goid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.product}" style="width: 15%">
+                                {$vo.product|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+                            </td>
+                            <td title="{$vo.letter}" style="width: 15%">
+                                {$vo.letter|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+                            </td>
+                            <td title="{$vo.type}" style="width: 7%">
+                                {$vo.type|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+                            </td>
+                            <td title="{$vo.barcode}" style="width: 7%">
+                                {$vo.barcode|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+                            </td>
+                            <td title="{$vo.standard}" style="width: 20%">
+                                {$vo.standard|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+                            </td>
+                            <td title="{$vo.unit}" style="width: 7%;text-align: center">
+                                {$vo.unit|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}</td>
+                            <td title="{$vo.info|strip_tags}" style="width: 30%">
+                                {$vo.info|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###|trim|msubstr=0,100,"utf-8",false}
+                            </td>
+
+                            <td style="width: 5%">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Goods/update',array('goid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+
+
+                    </volist>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加规则的表单</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+
+
+        <div style="margin-top: 30px;width: 83%">
+            <form class="form-horizontal" role="form" method="post" action="{:U('Rule/add')}">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">规则</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id='bar' placeholder="Home/Index/index" name='name' required>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">中文名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="首页" name='title'required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">类型</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="1" name='type' value="1" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <label class="radio-inline">
+                            <input type="radio" name="status" checked="checked" id="inlineRadio1" value="1" > 启用
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="inlineRadio1" value="0"> 禁用
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">有效条件</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" rows="8" name="condition"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg" id="out-xian"> 添 加 </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

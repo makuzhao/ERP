@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品下限提示信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+
+
+            <div>
+                <a href="{:U('Presell/confine')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+
+                        <td style="text-align: center">条形码</td>
+                        <td style="text-align: center">商品名</td>
+                        <td style="text-align: center">库存</td>
+                        <td style="text-align: center">下限值</td>
+                        <td style="text-align: center" >提示</td>
+                        <td style="text-align: center" >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td  style="text-align: center">{$vo.barcode|default="0"|str_replace=$bar, '<font style="color:red">' . $bar . '</font>', ###}</td>
+
+                            <td title="{$vo.product}" style="text-align: center">{$vo.product|msubstr=0,30,"utf-8",false|str_replace=$pro, '<font style="color:red">' . $pro . '</font>', ###}</td>
+                            <td title="{$vo.total}" style="text-align: center" >{$vo.total|default="0"|str_replace=$num, '<font style="color:red">' . $num . '</font>', ###}</td>
+                            <td title="{$vo.confine}" style="text-align: center">{$vo.confine|default="0"|str_replace=$confine, '<font style="color:red">' . $confine . '</font>', ###}</td>
+
+                            <td title="{$vo.k}" style="text-align: center">
+                        <if condition="$vo.k elt 0 ">
+                            <font style="font-size: 18px;color: red">{$vo.k|default="0"}</font>
+                            &nbsp;进货
+                            <else/>
+                            {$vo.k}
+
+                        </if>
+                        </td>
+
+
+
+
+                        <td style="text-align: center">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Presell/update',array('comid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs"  href="{:U('Presell/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作"  role="button">删 除</a>
+
+                        </td>
+
+
+                        </tr>
+                    </volist>
+                    <tr class="footerTr">
+                        <td style="text-align: center">{$id|default="0"}</td>
+                        <td style="text-align: center">总计</td>
+
+
+                        <td style="text-align: center;"></td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red"></td>
+                        <td >&nbsp;</td>
+
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

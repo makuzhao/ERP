@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>所有规则的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+
+        <div class="where">
+
+            当前位置 ：规则管理 -> 显示
+
+        </div>
+
+        <div style="margin-top: 10px">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").toggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Rule/searching')}">
+                <div style="text-align: center;display: none" id="search">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="margin-top: 10px;">规格</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="Boss/Sales/searching" name="name" >
+                        </div>
+
+                        <label class="col-sm-2 control-label" style="margin-top: 10px;">页面名称</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="老板 - 商品销售 - 搜索" name="title" >
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="margin-top: 0px;">状态</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="状态" name="status" >
+                        </div>
+
+                        <label class="col-sm-2 control-label" style="margin-top: 0px;">条件</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="条件" name="condition" >
+                        </div>
+
+
+
+                    </div>
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+                </div>
+            </form>
+
+
+
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th title="规则的ID" style="text-align: center;width: 5%">ID</th>
+                            <th title="模块/控制器/操作方法..." style="width: 20%">规则</th>
+                            <th title="对应规则的中文名称（页面）" style="width: 20%">页面名称</th>
+
+                            <th title="状态：1 正常，0 禁用" style="text-align: center;width: 5%" >状态</th>
+                            <th title="规则表达式，为空表示存在就验证，不为空表示按照条件验证" style="text-align: center;width: 10%">条件</th>
+                            <th style="text-align: center;width: 10%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td title="{$vo.id}" style="text-align: center">{$vo.id}
+
+                            </td>
+                            <td title="{$vo.name}" >{$vo.name}</td>
+                            <td title="{$vo.title}" >{$vo.title}</td>
+
+                            <td style="text-align: center">{$vo.status}</td>
+                            <td title="{$vo.condition|strip_tags}" >{$vo.condition|trim|strip_tags|msubstr=0,30,"utf-8",false}</td>
+                            <td style="text-align: center;">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Rule/update',array('rid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs" href="{:U('Rule/delete',array('rid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" onclick ="return del_sure()">
+                                    删 除
+                                </a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 23px;font-weight: bolder;text-align: center">总计</td>
+                        <td style="color: red;font-size: 30px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

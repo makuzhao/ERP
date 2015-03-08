@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>所有用户组的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：分组管理 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+            <div>
+                <table class="table table-striped" >
+                    <thead>
+
+                        <tr >
+                            <th >用户组ID</th>
+                            <th >用户组名</th>
+                            <th >当前状态</th>
+                            <th >拥有的权限 ID</th>
+                            <th >操作</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="text-align: center;">{$vo.id}
+
+                            </td>
+                            <td >{$vo.title}</td>
+                            <td title="状态说明：1、启用   0、禁用" style="text-align: center;">{$vo.status}</td>
+                            <td title="权限规则ID,{$vo.rules}">{$vo.rules|subStr=0,100}</td>
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('Group/update',array('gid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs"  href="{:U('Group/delete',array('gid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" onclick ="return del_sure()">
+                                    删 除
+                                </a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

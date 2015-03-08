@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-审核试用信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：审核收费 -> 审核试用 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Probation/freeIndex')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+
+                            <th style="width: 80px;text-align: center;">ID</th>
+                            <th >用户</th>
+                            <th style="text-align: center;">试用状态</th>
+                            <th style="text-align: center;">开始日期</th>
+                            <th style="text-align: center;">试用期限（月）</th>
+                            <th style="text-align: center;">停用日期</th>
+                            <th style="text-align: center;">操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+
+
+                        <tr>
+                            <td style="width: 80px;text-align: center;">{$vo.id|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+
+                            </td>
+                            <td title="{$vo.name}" >
+                                {$vo.name|str_replace=$name, '<font style="color:red">' . $name . '</font>', ###}
+                            </td style="text-align: center;">
+                            <td title="{$vo.isfree}" style="text-align: center;">
+                                {$vo.isfree|str_replace=$isfree, '<font style="color:red">' . $isfree . '</font>', ###}
+                            </td >
+                            <td title="{$vo.freedate}" style="text-align: center;">
+                                {$vo.freedate|str_replace=$date, '<font style="color:red">' . $date . '</font>', ###}
+                            </td>
+                            <td title="{$vo.freemonth}"  style="text-align: center;">
+                                {$vo.freemonth|str_replace=$freemonth, '<font style="color:red">' . $freemonth . '</font>', ###}
+                            </td>
+                            <td title="{$vo.freeend}" style="text-align: center;">
+                                {$vo.freeend|str_replace=$end, '<font style="color:red">' . $end . '</font>', ###}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Probation/freeUpdate',array('uid'=>$vo['id']))}" role="button">修 改</a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0.00"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center">总计</td>
+
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

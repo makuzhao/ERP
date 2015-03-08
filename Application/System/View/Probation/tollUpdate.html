@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新收费的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：审核收费 -> 审核收费 -> 更新
+
+        </div>
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Probation/tollUpdate')}">
+
+                <volist name="us" id="user" empty="">
+
+                    <input type="hidden" name='uid' value="{$user.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="用户名" name='name' value="{$user.name}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">更改状态为</label>
+                        <div class="col-sm-6">
+                            <if condition="$user.istoll eq 0 ">
+                                <label class="radio-inline">
+                                    <input type="radio" name="istoll"  id="inlineRadio1" value="1"   checked > 收费  
+                                </label>
+                                <else />
+                                <label class="radio-inline">
+                                    <input type="radio" name="istoll"  id="inlineRadio1" value="0"  checked > 免费  
+                                </label>
+                            </if>
+                        </div>
+                    </div>
+                    <if condition="$user.istoll eq 1 ">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">收费期限（月）</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="每月30天" name='tollmonth' value="{$user.tollmonth}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">每月收费</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="每月缴费" name='tollevery' value="{$user.tollevery}" >
+                            </div>
+                        </div>
+                    </if>
+
+                </volist>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg">更 新</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+#c{
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    width: 600px;
+    height: 500px;
+    background-color: #847d7d;
+    vertical-align: middle;
+   
+    behavior: url("../../PIE/PIE.htc");
+    
+
+}

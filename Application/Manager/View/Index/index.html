@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{:C('HOME_PAGE')}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/styleBoss.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+
+    </head>
+    <body >
+        <div class="top">
+            <div id="top_t">
+                <div id="photo_info" class="fr">
+                    <div id="photo" class="fl">
+                        <img src="__PUBLIC__/Image/menu/tou.png" alt="" width="60" height="60" style="border: 0px;">
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="info_center">
+                            {$sess}
+                        </div>
+                        <div class="help_info">
+                            <a href="{:U('Index/unsetSess')}" id="out" 
+                               style="outline: none; blur:expression(this.onFocus=this.blur());">
+                                <img src="__PUBLIC__/Image/menu/bt.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/goods.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Goods/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a href="{:U('Goods/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/type.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Type/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Type/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/company.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Company/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Company/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/boss.png"></a>
+                        <ul>
+                            <li><a  href="{:U('User/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('User/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/free.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Probation/freeIndex')}" target="rightFrame" >审核试用</a></li>
+                            <li><a  href="{:U('Probation/tollIndex')}" target="rightFrame" >审核收费</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/group.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Group/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Group/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" >
+                            <img src="__PUBLIC__/Image/menu/rule.png">
+                        </a>
+                        <ul>
+                            <li><a  href="{:U('Rule/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Rule/add')}" target="rightFrame" >添 加</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <iframe name="rightFrame" id="rightMain" src="{:U('Index/main')}" id='rightFrame'
+                    frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"
+                    >
+            </iframe>
+        </div>
+        <div class="bottom">
+            <div id="bottom_bg">
+                {:C('ALL_COPY')}
+            </div>
+        </div>
+    </body>
+
+</html>
+

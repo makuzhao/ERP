@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN"> 
+    <head>
+        <title>{:C('HOME_PAGE')}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/styleBoss.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+    </head>
+    <body >
+        <div class="top">
+            <div id="top_t" >
+                <div id="photo_info" class="fr" >
+                    <div id="photo" class="fl">
+                        <img src="__PUBLIC__/Image/menu/tou.png" alt="" width="60" height="60" style="border: 0px;">
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="info_center">
+                            {$sess}
+                        </div>
+                        <div class="help_info">
+                            <a href="{:U('Index/unsetSess')}" id="out" style="outline: none">
+                                <img src="__PUBLIC__/Image/menu/bt.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav" style="padding-right: 260px">
+                <ul>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/sales.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Sales/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Sales/add')}" target="rightFrame" >销 售</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><img src="__PUBLIC__/Image/menu/out.png"></a>
+                        <ul>
+                            <li><a  href="{:U('Out/index')}" target="rightFrame" >显 示</a></li>
+                            <li><a  href="{:U('Out/add')}" target="rightFrame" >进 货</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!--    内容页面      -->
+
+        <div class="main">
+            <iframe name="rightFrame" id="rightMain" src="{:U('Sales/add')}" 
+                    frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true">
+            </iframe>
+        </div>
+
+        <div class="bottom">
+            <div id="bottom_bg">
+                {:C('ALL_COPY')}
+            </div>
+        </div>
+
+    </body>
+
+</html>
+

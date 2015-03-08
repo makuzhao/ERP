@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商品信息 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#search").toggle();
+                    });
+                });
+            </script>
+            <button type="button" class="btn btn-default btn-sm btn-block" id="moreSearch">多条件搜索</button>
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Goods/searching')}">
+                <div style="text-align: center;display: none" id="search">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">条形码</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="条形码" name="bar" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">商品名</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商品名" name="pro" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 10px;">首字母</label>
+                        <div class="col-sm-3" style="margin-top: 10px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="统一，例： TY" name="let" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">类型</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商品类型" name="type" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">规格</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="规格" name="stand" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">单位</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="计量单位，例： 件" name="unit" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">售价</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="建议售价，例：10" name="price" >
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="margin-top: 0px;">描述</label>
+                        <div class="col-sm-3" style="margin-top: 0px;">
+                            <input type="text"  class="form-control" id='bar' placeholder="商品描述" name="info" >
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"  style="font-size: 20px;"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr>
+                            <th >ID</th>
+                            <th >条形码</th>
+                            <th >商品名</th>
+                            <th >首字母</th>
+                            <th >类型</th>
+                            <th >规格</th>
+                            <th >计量单位</th>
+                            <th >建议售价</th>
+
+                            <th >商品描述</th>
+                            <th >操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="width: 5%">{$vo.id}
+
+                            </td>
+                            <td title="{$vo.barcode}" style="width: 5%">{$vo.barcode}</td>
+                            <td title="{$vo.product}" style="width: 15%">{$vo.product}</td>
+                            <td title="{$vo.letter}" style="width: 5%">{$vo.letter}</td>
+                            <td title="{$vo.type}" style="width: 7%">{$vo.type}</td>
+
+                            <td title="{$vo.standard}" style="width: 20%">{$vo.standard}</td>
+                            <td title="{$vo.unit}" style="width: 7%;text-align: center">{$vo.unit}</td>
+                            <td title="{$vo.price}" style="width: 7%;">{$vo.price}</td>
+                            <td title="{$vo.info|strip_tags}" style="width: 20%">{$vo.info|trim|strip_tags|msubstr=0,30,"utf-8",false}</td>
+
+                            <td style="width: 5%">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Goods/update',array('goid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs" href="{:U('Goods/delete',array('goid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" role="button" id="del" onclick ="return del_sure()">删 除</a>
+                            </td>
+
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center;">总计</td>
+
+                        <td ></td>
+
+                        <td>&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

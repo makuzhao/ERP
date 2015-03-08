@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/main.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/colResizable-1.3.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/common.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(".list_table").colResizable({
+                    liveDrag: true,
+                    gripInnerHtml: "<div class='grip'></div>",
+                    draggingClass: "dragging",
+                    minWidth: 30
+                });
+
+            });
+        </script>
+        <title>收益报表</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body class="container-fluid">
+
+
+        <div id="table" class="mt10">
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Retailer/searching')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">关键字</label>
+                    <div class="col-sm-4">
+                        <input type="text"  class="form-control" id='bar' placeholder="关键字" name="search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+            <div class="box span10 oh" style="min-height: 360px;">
+                <table class="list_table">
+                    <tr style="background-color: #ddf9f8;font-size: 18px;">
+                        <td style="width: 10%;text-align: center;">时间</td>
+                        <td style="width: 20%;text-align: center;">条形码</td>
+                        <td style="width: 20%;text-align: center;">商品</td>
+                        <td style="width: 10%;text-align: center;">消费量</td>
+                        <td style="width: 10%;text-align: center;">消费价</td>
+                        <td style="width: 10%;text-align: center;">消费额</td>
+                        <td style="width: 10%;text-align: center;">进货价</td>
+                        <td style="width: 10%;text-align: center;">收益</td>
+                    </tr>
+
+                    <volist name="list" id="vo" empty="00">
+                        <tr class="tr">
+
+                            <td style="text-align: center;">{$vo.saledate|default="0000-00-00 00:00:00"}</td>
+
+                            <td>{$vo.barcode|default="null"}</td>
+                            <td>{$vo.product|default="null"}</td>
+
+                            <td style="text-align: center;">{$vo.num|default="0"}</td>
+                            <td style="text-align: center;">{$vo.presell|default="0.00"}</td>
+                            <td style="text-align: center;">{$vo.amount|default="0.00"}</td>
+
+                            <td style="text-align: center;">{$vo.outprice|default="0.00"}</td>
+
+                            <td style="text-align: center;padding-left: 10px;">
+                                <b style="font-size: 26px;padding-left:  10px;">
+                                    {$vo['num']*($vo['presell']-$vo['outprice'])}
+                                </b>
+
+                            </td>
+                        </tr>
+                    </volist>
+
+                    <!--          总计                        -->
+                    <tr style="background-color: #dffdff;font-size: 20px;font-weight: bolder">
+                        <td style="text-align: center">总计</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td style="text-align: center;color: red">{$outsum}</td>
+                        <td style="text-align: center;color: red">{$insum}</td>
+                        <td style="text-align: center;color: red">{$total}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+            <div style="text-align: center;">
+                {$page}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+    <head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+        <title>JS获取回车时间（兼容各浏览器）</title>  
+    </head>  
+
+    <body>  
+
+
+        <input  type="text" id="bar" class="text" required />  
+        <input  type="button" class="btnS" value="提交"/>  
+
+
+        <script >
+            document.onkeydown = function (evt) {
+                var isie = (document.all) ? true : false;
+                var key;
+                var srcobj;
+
+                if (isie) {
+                    key = event.keyCode;
+                    srcobj = event.srcElement;
+                }
+                else {
+                    key = evt.which;
+                    srcobj = evt.target;
+                }
+                //alert(srcobj );
+                if (key == 13 && srcobj.type != 'button' && srcobj.type != 'submit' && srcobj.type != 'reset' && srcobj.type != 'textarea' && srcobj.type != '') {
+                    if (isie)
+                        event.keyCode = 9;
+                    else {
+                        var el = getNextElement(evt.target);
+                        if (el.type != 'hidden')
+                            ;   //nothing to do here.
+                        else
+                            while (el.type == 'hidden')
+                                el = getNextElement(el);
+                        if (!el)
+                            return false;
+                        else
+                            el.focus();
+                    }
+                }
+            }
+
+            function getNextElement(field) {
+                var form = field.form;
+                for (var e = 0; e < form.elements.length; e++) {
+                    if (field == form.elements[e])
+                        break;
+                }
+                return form.elements[++e % form.elements.length];
+            }
+
+        </script>  
+
+
+
+    </body>  
+</html>  

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>主库商家详细信息显示</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+        <style>
+            .input-in{
+                padding: 10px;
+                border-color: #fff;
+                border: 0px;
+                vertical-align: middle;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+                margin-bottom: 10px;
+
+            }
+            .input-in-place{
+                margin-left: 0px;
+                margin-right:60px;
+                width: 306px;
+            }
+            .yuan-6{
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                behavior: url("__PUBLIC__/CSS/PIE.htc");
+            }
+        </style>
+
+    </head>
+    <body class="container">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 商品信息 -> 主库商品 -> 商家信息
+
+        </div>
+
+        <div style="margin-top: 30px;width: 100%;text-align: left;" class="form-group">
+            <form class="form-horizontal" role="form">
+
+                <volist name="company" id="xc">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">商家</label>
+
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6"  style="border: 1px;background-color: #ffffff;"  value="{$xc.company}"  readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">法人</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6"  value="{$xc.boss}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">法人电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.bostel}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系人</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.people}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label" >联系人电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.peotel}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label" >地址</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.address}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label" >电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.tel}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label" >官网</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control yuan-6" value="{$xc.website}" style="border: 1px;background-color: #ffffff;" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">商品描述</label>
+                        <div class="col-sm-5" >
+                            <div style="padding:  7px;background-color: #fff;width: 220px;" class="yuan-6">
+                                {$xc.info|default="暂时没有相关信息"}
+                            </div> 
+                        </div>
+                    </div>
+
+
+                </volist>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

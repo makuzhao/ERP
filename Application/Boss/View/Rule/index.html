@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>所有规则的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 0px">
+            <div>
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td title="规则的ID" style="text-align: center;width: 5%">ID</td>
+                        <td title="模块/控制器/操作方法..." style="text-align: center;width: 15%">规则</td>
+                        <td title="对应规则的中文名称（页面）" style="text-align: center;width: 15%">页面名称</td>
+                        <td  style="text-align: center;width: 5%">类型</td>
+                        <td title="状态：1 正常，0 禁用" style="text-align: center;width: 5%" >状态</td>
+                        <td title="规则表达式，为空表示存在就验证，不为空表示按照条件验证" style="text-align: center;width: 20%">条件</td>
+                        <td style="text-align: center;width: 5%">操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td title="{$vo.id}" style="text-align: center">{$vo.id}
+                                <a href="{:U('Rule/delete',array('rid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.name}" >{$vo.name}</td>
+                            <td title="{$vo.title}" >{$vo.title}</td>
+                            <td style="text-align: center">{$vo.type}</td>
+                            <td style="text-align: center">{$vo.status}</td>
+                            <td title="{$vo.condition|strip_tags}" >{$vo.condition|trim|strip_tags|msubstr=0,30,"utf-8",false}</td>
+                            <td style="text-align: center;">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Rule/update',array('rid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+    <head>
+        <title>店铺信息</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <!--   兼容 html5       -->
+        <!--[if lt IE 9]>
+           <script src="__PUBLIC__/JS/html5shiv.js";></script>
+           <script src="__PUBLIC__/JS/respond.js";></script>            
+        <![endif]-->
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <!--    显示placeholder数据      -->
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script> 
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <!--   bootstrap 兼容 IE       -->
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+            当前位置 ：{$realName} &nbsp; 店铺管理 -> 显示
+        </div>
+        <div style="margin-top: 10px;">
+            <div style="position: relative;">
+                <script>
+                    $(document).ready(function () {
+                        $("button").click(function () {
+                            $("#search").slideToggle();
+                        });
+                    });
+                </script>
+                <button type="button" class="btn btn-default btn-sm btn-block yuan-10" id="moreSearch">多条件搜索</button>
+                <form class="form-horizontal000" role="form0" method="post" action="{:U('Shop/searching')}">
+
+                    <div style="text-align: center;display: none;z-index: 1" id="search">
+
+                        <label class="label-form" style="margin-top: 0px;">店铺</label>
+                        <input type="text"  class="input-in input-in-place" id='bar' placeholder="店铺名" name="shop" >
+
+                        <label class="label-form" style="margin-top: 0px;">地址</label>
+                        <input type="text"  class="input-in input-in-place" placeholder="店铺地址" name="address" >
+                        <br>
+                        <label class="label-form" style="margin-top: 0px;">店主</label>
+                        <input type="text"  class="input-in input-in-place"  placeholder="店铺负责人" name="people" >
+
+                        <label class="label-form" style="margin-top: 0px;">电话</label>
+                        <input type="text" class="input-in input-in-place"  placeholder="店主电话" name="tel" >
+                        <br>
+                        <button type="submit" class="input-but" style="font-size: 20px;"> 搜 索 </button>
+                    </div>
+                </form>
+            </div>
+
+            <div style="margin-top: 0px">
+                <table class="table table-striped tb-yuan">
+                    <thead>
+                        <tr class="tb-thead">
+                            <th >ID</th>
+                            <th >店铺</th>
+                            <th >地址</th>
+                            <th >店主</th>
+                            <th >电话</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="空白">
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+
+
+                        <td style="width: 10%">{$vo.id}  </td>
+                        <td title="{$vo.shop}" style="width: 25%">{$vo.shop|msubstr=0,30,"utf-8",false}</td>
+                        <td title="{$vo.address}" style="width: 25%" >{$vo.address|msubstr=0,30,"utf-8",false}</td>
+                        <td title="{$vo.people}" style="width: 10%">{$vo.people|msubstr=0,30,"utf-8",false}</td>
+                        <td title="{$vo.tel}" style="width: 10%">{$vo.tel|msubstr=0,30,"utf-8",false}</td>
+
+
+                        <td style="text-align: center;width: 10%">
+                            <a class="btn btn-primary btn-xs "  href="{:U('Shop/update',array('comid'=>$vo['id']))}" role="button"  >修 改</a>
+                            <a class="btn btn-primary btn-xs " href="{:U('Shop/delete',array('comid'=>$vo['id']))}"  role="button"  onclick ="return del_sure()">删 除 </a>
+                        </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td>{$id|default="0"}</td>
+                        <td >总计</td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                    </tr>
+
+                </table>
+
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

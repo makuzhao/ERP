@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商家基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Company/searching')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"> 关键字 </label>
+                    <div class="col-sm-4">
+                        <input type="text"  class="form-control" id='bar' placeholder="关键字" name="search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td >ID</td>
+                        <td >商家</td>
+                        <td >地址</td>
+                        <td >联系人</td>
+                        <td >电话</td>
+
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="width: 10%">{$vo.id}
+                                <a href="{:U('Company/delete',array('comid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.company}" style="width: 30%">{$vo.company|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.address}" style="width: 30%" >{$vo.address|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.boss}" style="width: 10%">{$vo.boss|msubstr=0,30,"utf-8",false}</td>
+                            <td title="{$vo.tel}" style="width: 20%">{$vo.tel|msubstr=0,30,"utf-8",false}</td>
+
+
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('Company/update',array('comid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

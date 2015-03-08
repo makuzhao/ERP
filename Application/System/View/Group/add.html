@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加用户组的表单</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：分组管理 -> 添加
+
+        </div>
+        <div style="margin-top: 30px">
+            <form class="form-horizontal" role="form" method="post" action="{:U('Group/add')}">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">用户组名</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="bar" placeholder="Guest" name='title'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">当前状态</label>
+                    <div class="col-sm-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="status" checked="checked" id="inlineRadio1" value="1" > 启用
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="inlineRadio1" value="0"> 禁用
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">系统权限</label>
+                    <div class="col-sm-10" style="margin-top:-38px">
+                        <table >
+                            <tr>
+                            <volist name="sys" id="vo" default="空白">
+                                <label class="checkbox-inline">
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}"> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+                                </label>
+                            </volist>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">老板权限</label>
+                    <div class="col-sm-10" style="margin-top: -38px">
+
+                        <table >
+                            <tr>
+                            <volist name="boss" id="vo" default="空白">
+                                <label class="checkbox-inline">
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}"> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+                                </label>
+                            </volist>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">销售员权限</label>
+                    <div class="col-sm-10" style="margin-top: -17px">
+                        <table >
+                            <tr>
+                            <volist name="salesman" id="vo" default="空白">
+                                <label class="checkbox-inline">
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}"> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+                                </label>
+                            </volist>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg">添 加</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

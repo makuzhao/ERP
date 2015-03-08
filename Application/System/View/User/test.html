@@ -1,0 +1,26 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/city.js"></script>
+    </head>
+    <body >
+        <div onclick="onloadprovince()">
+
+            <select id="province"  name="province"  onchange="cityName(this.selectedIndex);">
+                <option value="">
+                    -- 请选择省名 --
+                </option>
+            </select>
+            -
+            <select id="city" name="city">
+                <option value="">
+                    -- 请选择城市名 --
+                </option>
+            </select>
+
+        </div>
+    </body>
+</html>

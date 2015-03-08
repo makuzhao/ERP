@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Goods/searching')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">关键字</label>
+                    <div class="col-sm-4">
+                        <input type="text" id='bar' class="form-control" id="inputEmail3" placeholder="关键字" name="search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                </div>
+
+
+            </form>
+
+
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td >ID</td>
+                        <td >条形码</td>
+                        <td >商品名</td>
+                        <td >首字母</td>
+                        <td >类型</td>
+                        <td >规格</td>
+                        <td >计量单位</td>
+                        <td >商品描述</td>
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td style="width: 5%">{$vo.id}
+                                <a href="{:U('Goods/delete',array('goid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td title="{$vo.barcode}" style="width: 5%">{$vo.barcode}</td>
+                            <td title="{$vo.product}" style="width: 15%">{$vo.product}</td>
+                            <td title="{$vo.letter}" style="width: 7%">{$vo.letter}</td>
+                            <td title="{$vo.type}" style="width: 7%">{$vo.type}</td>
+
+                            <td title="{$vo.standard}" style="width: 20%">{$vo.standard}</td>
+                            <td title="{$vo.unit}" style="width: 7%;text-align: center">{$vo.unit}</td>
+                            <td title="{$vo.info|strip_tags}" style="width: 30%">{$vo.info|trim|strip_tags|msubstr=0,50,"utf-8",false}</td>
+
+                            <td style="width: 5%">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Goods/update',array('goid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

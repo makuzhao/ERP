@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-店铺信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+
+
+        <!--    显示placeholder数据      -->
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script> 
+
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <!--   bootstrap 兼容 IE       -->
+        <script src="__PUBLIC__/JS/respond.js"></script>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--   兼容 html5       -->
+        <!--[if lt IE 9]>
+           <script src="__PUBLIC__/JS/html5shiv.js";></script>
+           <script src="__PUBLIC__/JS/respond.js";></script>
+               
+        <![endif]-->
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：店铺管理 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div id="yuan-10">
+                <a href="{:U('Shop/index')}" class="btn btn-primary btn-lg active yuan-10" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr class="tb-thead">
+                            <th >ID</th>
+                            <th >店铺</th>
+                            <th >地址</th>
+                            <th >店主</th>
+                            <th >电话</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" >
+                        <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+                        <td style="width: 10%">{$vo.id}
+
+                        </td>
+                        <td title="{$vo.shop}" style="width: 25%">{$vo.shop|str_replace=$shop, '<font style="color:red">' . $shop . '</font>', ###}</td>
+                        <td title="{$vo.address}" style="width: 25%" >{$vo.address|str_replace=$str, '<font style="color:red">' . $address . '</font>', ###}</td>
+                        <td title="{$vo.people}" style="width: 10%">{$vo.people|str_replace=$people, '<font style="color:red">' . $people . '</font>', ###}</td>
+                        <td title="{$vo.tel}" style="width: 10%">{$vo.tel|str_replace=$tel, '<font style="color:red">' . $tel . '</font>', ###}</td>
+
+
+                        <td style="text-align: center;width: 10%">
+                            <a class="btn btn-primary  btn-xs" href="{:U('Shop/update',array('comid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Shop/delete',array('comid'=>$vo['id']))}"  role="button"  onclick ="return del_sure()">删 除 </a>
+                        </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td>{$id|default="0"}</td>
+                        <td >总计</td>
+
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                        <td >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

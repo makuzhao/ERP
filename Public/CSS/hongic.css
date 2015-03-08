@@ -1,0 +1,235 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-11-13, 17:51:21
+    Author     : Administrator
+*/
+html{
+    background-color: #bde7ff;
+}
+body{
+    /*  全局背景色    */
+    background-color: #bde7ff;
+    font-family: "微软雅黑"; 
+}
+
+
+.footerTr{
+    background-color: #f2f3f3;
+    font-weight: bolder;
+    font-size: 20px;
+    background-color: #fff;
+    border-color: #f312e1;
+
+}
+#del{
+    margin-top: 6px;
+}
+#moreSearch{
+    background-color: #f2f3f3;
+    color: #000;
+    font-size: 16px;
+    font-weight: bolder;
+
+    box-shadow: 0px 0px 10px  #0044cc ;
+
+    -moz-box-shadow: 0px 0px 20px #0044cc;
+    -webkit-box-shadow: 0px 0px 20px #0044cc;
+
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+
+
+
+}
+
+.where{
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #428bca;
+}
+.tb-top{
+    background-color: #abd9f0;
+}
+/*
+   圆角
+*/
+#yuan-10{
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("../../PIE/PIE.htc");
+}
+.yuan-10{
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url('../../PIE/PIE.htc');
+}
+.yuan-6{
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url('../../PIE/PIE.htc');
+    border: 0px;
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+}
+#yuan-6{
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+}
+/*
+   表格头 单 双 轮显
+*/
+.tb-yuan{
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("../../PIE/PIE.htc");
+}
+.tb-thead{
+    background-color: #abd9f0;
+}
+.tb-tbody-one{
+    background-color: #cbecfc;
+    z-index: 3;
+}
+.tb-tbody-two{
+    background-color: #def4fe;
+    z-index: 3;
+}
+.tb-bbt{
+
+
+}
+.label-form{
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+
+}
+.input-in{
+    padding: 10px;
+    border-color: #fff;
+    border: 0px;
+    vertical-align: middle;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    margin-bottom: 10px;
+    /* background-image: url("../Image/input.jpg");*/
+    /* background-repeat: no-repeat;*/
+}
+.input-in-place{
+    margin-left: 0px;
+    margin-right:60px;
+    width: 206px;
+
+}
+.input-but{
+
+    padding:6px 16px;
+    border-color: #fff;
+    border: 0px;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+    color: #fff;
+    background-color: #428bca;
+    /* background:url("../Image/columns.gif") no-repeat;*/
+
+}
+/* 空白占位*/
+.kongbai{
+    width: 300px;
+    display: inline-block;
+}
+#out-xian{
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+}
+.out-xian{
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+}
+.xing-red{
+    color: red;
+    font-size: 20px;
+    font-weight: bolder;
+    display: inline-block;
+    /* margin-top: 6px !important;*/
+
+
+}
+
+/*==========以下部分是Validform必须的===========*/
+.Validform_checktip{
+    margin-left:8px;
+    line-height:20px;
+    height:20px;
+    overflow:hidden;
+    color:#999;
+    font-size:12px;
+}
+.Validform_right{
+    color:#71b83d;
+    padding-left:20px;
+    background:url(../Image/form/right.png) no-repeat left center;
+}
+.Validform_wrong{
+    color:red;
+    padding-left:20px;
+    white-space:nowrap;
+    background:url(../Image/form/error.png) no-repeat left center;
+}
+.Validform_loading{
+    padding-left:20px;
+    background:url(../Image/form/onLoad.gif) no-repeat left center;
+}
+.Validform_error{
+    background-color:#ffe7e7;
+}
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#cc0;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
+
+
+/* 表单验证 */
+
+input.error { border: 1px solid red; display: inline-block;}
+label.error {
+    display: inline-block;
+    background:url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+    padding-left: 12px;
+    font-weight: bold;
+    color: red ;
+    min-width: 400px;
+}
+label.checked {
+    background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+    display: inline-block;
+}
+.err-width{
+    min-width: 400px;
+}

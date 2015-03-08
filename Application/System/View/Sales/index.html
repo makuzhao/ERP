@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>出库商品的基本信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/layer.min.js"></script>
+        <script>
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+        </script>
+
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 10px">
+            <form class="form-horizontal" role="form" method="get" action="{:U('Sales/searching')}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">关键字</label>
+                    <div class="col-sm-4">
+                        <input type="text"  class="form-control" id='bar' placeholder="关键字" name="search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                </div>
+
+
+            </form>
+            <div style="margin-top: 10px">
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td style="width: 10%">ID</td>
+                        <td style="width: 15%">条形码</td>
+                        <td style="width: 20%;">商品</td>
+                        <td style="width: 10%;text-align: center">数量</td>
+                        <td style="width: 10%;text-align: center">售价</td>
+                        <td style="width: 10%;text-align: center">金额</td>
+                        <td style="width: 10%;text-align: center">销售员</td>
+                        <td style="width: 15%;text-align: center">日期</td>
+
+                    </tr>
+                    <volist name="list" id="vo" default="暂时没有数据">
+                        <tr>
+                            <td >{$vo.id}
+                                <!--
+                                <a href="{:U('Sales/delete',array('outid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                                -->
+                            </td>
+                            <td title="{$vo.barcode}" >
+                                <a href="{:U('Sales/look',array('id'=>$vo['barcode']))}">{$vo.barcode}</a>
+                            </td>
+                            <td title="{$vo.product}" >{$vo.product}</td>
+                            <td title="{$vo.num}"  style="text-align: center;">{$vo.num}</td>
+                            <td title="{$vo.presell}" style="text-align: center;">{$vo.presell}</td>
+                            <td title="{$vo.amount}" style="text-align: center;">{$vo.amount}</td>
+                            <td title="{$vo.salesman}" style="text-align: center;">{$vo.salesman}</td>
+                            <td title="{$vo.saledate}" style="text-align: center;">{$vo.saledate}</td>
+
+                        </tr>
+                    </volist>
+                    <!--          总计                        -->
+                    <tr style="background-color: #dffdff;font-size: 20px;font-weight: bolder">
+                        <td style="width: 15%">{$id|default="0"}</td>
+                        <td style="width: 10%">总计</td>
+
+                        <td style="width: 20%;">&nbsp;</td>
+                        <td style="width: 10%;text-align: center">&nbsp;</td>
+                        <td style="width: 10%;text-align: center">&nbsp;</td>
+                        <td style="width: 10%;text-align: center;color: red">{$total}</td>
+                        <td style="width: 10%;text-align: center">&nbsp;</td>
+                        <td style="width: 15%;text-align: center">&nbsp;</td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

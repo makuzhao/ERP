@@ -1,0 +1,58 @@
+.login{
+
+    background: url('../Image/login/22.png') repeat-x center center fixed;
+    background-color: #fff;
+    width: 100%;
+    behavior: url("../../PIE/PIE.htc");
+
+
+}
+
+.login-log{
+    width: 380px;
+    height: 200px;
+    // background-color: #fff;
+    position: absolute;
+    top: 49%;
+    left: 46%;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+
+
+}
+.login-for{
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    margin: 6px;
+    font-size: 18px;
+    vertical-align: middle;
+    behavior: url("../../PIE/PIE.htc");
+    height: 36px;
+}
+.login-in{
+    font-size: 20px;
+    border: 0px;
+    border-bottom: #298fec 1px dashed;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    padding: 0px 0px;
+    background-color: #fff;
+    width: 230px;
+    vertical-align: middle;
+    height: 33px; 
+    vertical-align: middle;
+    behavior: url("../../PIE/PIE.htc");
+    *padding: 7px 0px !important;
+    *padding-left:33px !important;
+    *width: 200px !important;
+    *height: 20px !important; 
+    /*   background: url('../Image/login/44.png') no-repeat; */
+}
+.fontColor{
+    color: #4d956c;
+    font-weight: bolder;
+}

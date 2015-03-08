@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品类型信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商品类型 -> 显示
+
+        </div>
+        <div style="margin-top: 10px">
+            <div style="text-align: center">
+
+                <form class="form-horizontal" role="form" method="get" action="{:U('Type/searching')}">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">关键字</label>
+                        <div class="col-sm-4">
+                            <input type="text"  class="form-control" id='bar' placeholder="关键字" name="search" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"> 搜 索 </button>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+            <div >
+                <table class="table table-striped"  >
+                    <thead>
+                        <tr >
+                            <th style="text-align: center">ID</th>
+                            <th style="text-align: center">商品类型</th>
+
+                            <th style="text-align: center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td  style="text-align: center">{$vo.id}
+                            </td>
+                            <td style="text-align: center">{$vo.type}</td>
+
+                            <td style="text-align: center">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Type/update',array('tyid'=>$vo['id']))}" role="button">修 改</a>
+                                <a class="btn btn-primary  btn-xs" href="{:U('Type/delete',array('tyid'=>$vo['id']))}" title="删除不可恢复，谨慎操作" onclick ="return del_sure()">删 除</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$total|default="0"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center">总计</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

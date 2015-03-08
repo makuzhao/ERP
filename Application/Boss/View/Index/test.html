@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+
+        <title>Document</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <link href="__PUBLIC__/CSS/test.css" rel="stylesheet"/>
+
+        <script language="javascript">
+            $(function () {
+                if (window.PIE) {
+                    $('.rounded').each(function () {
+                        PIE.attach(this);
+                    });
+                }
+            });
+        </script>
+
+        <style>
+            #c{
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+                width: 600px;
+                height: 500px;
+                background-color: red;
+                // behavior: url("__PUBLIC__/CSS/PIE.htc");
+                // background-image:  url("./message.jpg");
+
+            }
+        </style>
+
+
+    </head>
+    <body>
+        <div id="c">
+            7465748797897
+        </div> 
+    </body>
+</html>

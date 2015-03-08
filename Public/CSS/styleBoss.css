@@ -1,0 +1,539 @@
+@CHARSET "UTF-8";
+html, body { 
+    height:100%; 
+    overflow:hidden;
+    background-color: #bde7ff;
+}
+.top {
+    position:absolute;
+    left:0; 
+    top:0;
+    right:0;
+    /* height:82px; */
+    height:150px;
+    *height:150px !important;
+    background: url('../Image/login/asdsadsd.png') repeat-x; 
+    overflow: auto;
+    /* z-index: 4; */  /*  挡住kindedit编辑器的全屏显示，所以去掉  */
+}
+.side {
+    position:absolute; 
+    left:33px; 
+    top:123px;
+    bottom:25px;
+    width:360px;  /*宽度*/
+    background:url('../Image/side_bg.gif') repeat;
+    z-index: 100;
+    display: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    height: 100%;
+    /*overflow: auto;*/
+    behavior: url("../../PIE/PIE.htc");
+
+}
+.main {
+    position:absolute; 
+    left:32px; 
+    top: 108px;
+    /*top: 0px !important;*/
+    bottom:28px;  /*  底部显示  */
+    right:0px;
+    width:auto;
+    height:auto;
+    z-index:3;
+    overflow:hidden;
+    *margin-left:31px !important;   /* IE 8 以下有效 */
+    /*  background-color: #bde7ff;*/
+}
+.bottom {
+    clear: both;
+
+    width: 100%;
+    margin-bottom: 0px;
+    height:25px;
+}
+.bottom #bottom_bg{
+    border-top: 1px solid #c9c9c9;/*#e8f2f6*/
+    height: 24px;
+    width: 100%;
+    line-height: 25px;
+    text-align: center;
+    z-index: 1;
+    background-color:#50b3f9;  /* 底部背景色 */
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+}
+
+.main iframe {
+    width:100%; 
+    height:100%;
+    //overflow: auto;
+}
+
+/*------ for ie6 ------*/
+html { *padding:125px 0 25px 0;}
+.top { *height:125px; *margin-top:-125px;}
+.side { *height:100%; *float:left; *margin-right:-206px;}
+.main { *height:100%; *margin-left:160px;}
+.bottom { *height:25px;}
+.top, .side, .main, .bottom {*position:relative; *top:0; *right:0; *bottom:0; *left:0;}
+
+#top_t{
+    height: 90px; /* 导航栏入侵上部*/
+
+    background: url('../Image/login/11.png') 0px 0px no-repeat;
+}
+#logo{
+    width: 352px;
+    height: 90px;
+    background: url('../Image/login/11.png') 0px 0px no-repeat;
+}
+#top_t #photo_info{
+    float: right;
+    position: relative;
+    width:300px;
+    height: 90px; 
+    /* background: url('../Image/login/asdsadsd.png') 0px 0px repeat-x; */   /*右上角背景*/
+}
+
+
+
+/*  用户名 */
+.us{
+    background-image: url("../Image/a.png");
+}
+
+.us-out{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    *margin-top: 10px !important;
+
+
+}
+#photo_info #photo{
+    padding-top: 15px;
+
+}
+/*  人物头像  */
+#photo_info #photo img{
+    /*  width:50px; */
+    position: absolute;
+    top: 22px;
+    right: 113px;
+    height: 50px;
+    border:2px solid #0c4169;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0.9;
+    filter:alpha(opacity=90); 
+    behavior: url("../../PIE/PIE.htc");
+
+}
+
+#photo_info #base_info{
+    /* width: 210px; */
+    height: 90px;
+
+}
+#base_info .help_info{
+    height: 22px;
+    padding-top: 13px;
+}
+#base_info .help_info a{
+    display: inline-block;
+    width: 46px;
+    height: 19px;
+}
+#base_info .help_info #hp{
+    /* margin-left: 40px;*/
+}
+#base_info .help_info #gy{
+    /*  margin-left: 5px;*/
+}
+/*  退出按钮  */
+#base_info .help_info #out{
+    /* margin-left: -13px;*/
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+    position: absolute;
+    top: 66px;
+    right: 70px;
+    margin-top: -8px;
+    *margin-top: -30px !important;
+    *top: 86px !important;
+    *right: 80px !important;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../Image/menu/bt.png'); /* IE6 */
+    _background-image: none; /* IE6 */
+
+
+}
+/*  用户名  */
+#base_info .info_center{
+    width: 112px;
+    height: 25px;
+    padding-top:30px; 
+    padding-left: 1px;
+    color:#fff;
+    font-size: 20px;
+    position: relative;
+    *top: 3px !important;
+    *right: 70px !important;
+}
+#base_info .info_center #nt{
+    padding-left: 0px;
+    font-size: 12px;
+}
+#base_info .info_center #notice{
+    background: red;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 4px;
+    opacity: 0.8;
+    filter:alpha(opacity=80); 
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #fff;
+    behavior: url("../../PIE/PIE.htc");
+}
+#side_here{
+    height: 44px;
+    background:#fff url('../Image/here.gif') 0px 0px repeat-x;
+}
+#side_here_l{
+    width: 180px;
+    height: 44px;
+    background: url('../Image/side_top.gif') 0px 0px no-repeat;
+}
+#here_area{
+    height: 44px;
+    line-height: 44px;
+    padding-left: 20px;
+}
+
+/*左侧菜单*/
+.sideMenu{ 
+    position:absolute;
+    left: 5px;
+    top:5px;
+    width: 150px; /*宽度*/
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    behavior: url("../../PIE/PIE.htc");
+
+
+
+}
+.sideMenu h3{ 
+    height:38px; line-height:38px; cursor:pointer;
+    font:normal 14px/38px "Microsoft YaHei";
+    font-weight: bold;
+    background: url('../Image/side_h3.gif') 0px 0px no-repeat;
+    padding-left: 45px;
+}
+.sideMenu h3 em{ float:right; display:block; width:40px; height:32px;   background:url('../Image/icoAdd.png') 16px 12px no-repeat; cursor:pointer; }
+.sideMenu h3.on { background: url('../Image/side_h3_on.gif') 0px 0px no-repeat; }
+.sideMenu ul{ 
+    display:none;
+    // background:url('../Image/side_bg.gif') repeat; 
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+}
+.sideMenu ul li{
+    height: 31px;
+    line-height: 31px;
+    font:normal 13px/31px "微软雅黑";
+    font-size: 14px;
+    //font-family: "幼圆";
+
+    padding-left: 43px;
+    background: url('../Image/side_li.gif') 33px 13px no-repeat;
+    background-color: #Fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+}
+.sideMenu ul li.on{
+    background: url('../Image/side_li_on.png') 0px 0px no-repeat;
+    color: #fff;
+}
+.scroll{ position:absolute; left:2px; bottom:25px; width:60px; height:42px;height:42px;overflow:hidden; display:none;z-index: 3;}
+.scroll a {display: inline-block;zoom: 1;}
+.scroll a{ background:url('../Image/scroll_bg.png') no-repeat left top; width:48px; height:17px;margin: 0px 5px;}
+.scroll a:hover{ background-position:left bottom;}
+.scroll a.next{background-position:right top;}
+.scroll a.next:hover{ background-position:right bottom;}
+
+
+.bbt{
+    background: url("../Image/menu/show.png") no-repeat;
+    position: absolute !important;
+    top:0px !important;
+    left: 0px !important;
+    clear: both;
+    width: 62px; /* 使用背景图片 不然IE6 不能显示全部文字  */
+    height: 160px;
+
+    padding-left: 6px;
+    padding-top: 6px;
+    /* font-weight: bolder; */
+    margin-top: 190px;
+    display: inline;
+    /* background-color: #50b3f9; */  /* 使用背景图片 */
+    /* color: #fff;*/
+    z-index: 38;
+    /*behavior: url("../../PIE/PIE.htc");*/
+    /*box-shadow: 0px 0px 10px #1a2ef3;*/
+    font-size: 18px;
+    overflow: auto;
+    border: 0px;
+
+
+}
+.uul{
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+}
+
+/*
+ * 操作菜单
+ */
+.threeSide{
+    margin-left: 100px;
+    margin-top: -30px;
+    min-width: 100px; /* 宽度*/
+    // display: none;
+
+    background:url('../Image/side_bg.gif')  repeat;
+    padding-left: 18px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    font-weight: bolder;
+    overflow:auto;
+    behavior: url("../../PIE/PIE.htc");
+
+}
+.sideBoss{
+    position:absolute; 
+    left:33px; 
+    top:153px;
+    /* bottom:25px; */
+    width:193px;  /* 宽度*/
+    /* background:url('../Image/side_bg.gif') no-repeat; */
+    z-index: 100;
+    display: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("../../PIE/PIE.htc");
+
+}
+
+.sideBoss li{
+    height: 38px;
+    width: 192px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("../../PIE/PIE.htc");
+    vertical-align: middle;
+}
+
+.sideBoss li a{
+    display: inline-block;
+    width: 155px;
+    color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 38px;
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+    font-size: 18px;
+    background: url('../Image/menu/zuo-1.png')  no-repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.sideBoss li a:hover{
+    display: inline-block;
+    width: 155px;
+    color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 38px;
+    background: url('../Image/menu/zuo-3.png')  no-repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+/*
+   功能菜单
+*/
+.nav {
+    position: relative;
+    /* top:3px;*/
+    /*  left: 40%;*/
+    float: right;
+    margin-right: 173px;
+    margin-top: -93px;
+    padding-top: 3px;
+    padding-right: 3px;
+
+    height: 90px;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+    /*background: url('../Image/login/menu-bg.jpg') 0px 0px repeat-x;*/
+    /*background-color: #0a8ecd;*/
+
+
+
+}
+
+.nav ul ul {
+    display: none;
+    position: relative;
+    z-index: 20px;
+
+}
+
+.nav ul li:hover > ul {
+    text-align: center;
+    display: block;
+}
+
+
+.nav ul {
+
+    /* padding: 0 20px;*/  /* 间距*/
+    border-radius: 6px;  
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+}
+.nav ul:after {
+    content: ""; 
+    clear: both; 
+    display: block;
+    text-align: center;
+}
+
+.nav ul li {
+    float: left;
+    text-align: center;
+}
+.nav ul li:hover {
+
+    text-align: center;  
+    background: url("../Image/menu/select.png") 3px 20px  no-repeat;
+
+}
+.nav ul li:hover a {
+    color: #fff;
+    /*background-color: red;*/
+    text-align: center;
+    background: url("../Image/menu/select.png") 3px 20px  no-repeat;
+
+}
+
+.nav ul li a {
+    display: block;
+    padding-left:  5px;  /*一级 间距*/
+    padding-right: 5px;
+    /*color: #757575; */
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    blur:expression(this.onFocus=this.blur());
+    padding-bottom: 6px;  /*  持平背景图 */
+    /* padding-top: 3px;*/
+    margin-top: 3px;
+
+}
+
+
+.nav ul ul {
+    /*  background: #0a8ecd ; */  /* 二级 背景色 */
+
+    position: absolute;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+    width: 126px;
+    margin-left: -18px;
+
+    z-index: 20;
+
+}
+.nav ul ul li {
+    float: none; 
+    /* border-top: 0px solid #fff; */
+    /* border-bottom: 0px solid #fff; */
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+    background: url("../Image/menu/one.png")  repeat-x; 
+
+}
+.nav ul ul li a {
+    clear: both;
+    padding-bottom: 0px;   /*  重置间距  */
+    margin-top: 0px;
+    color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+    /* background: url("../Image/menu/one.png")  repeat-x;*/
+
+}	
+.nav ul ul li a:hover {
+    /* background: #79d0f9;*/  /* 二级鼠标经过时的背景色*/
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+    background: url("../Image/menu/two.png")  repeat-x;
+
+}
+
+.nav ul ul ul {
+    position: absolute; 
+    left: 100%; 
+    top:0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url("../../PIE/PIE.htc");
+    text-align: center;
+
+}

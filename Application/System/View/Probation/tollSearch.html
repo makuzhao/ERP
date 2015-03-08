@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-审核收费信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：审核收费 -> 审核收费 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px">
+            <div>
+                <a href="{:U('Probation/tollIndex')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th style="width: 80px;text-align: center;">ID</th>
+                            <th >用户</th>
+                            <th style="text-align: center;">收费状态</th>
+                            <th style="text-align: center;">开始日期</th>
+                            <th style="text-align: center;">收费期限（月）</th>
+                            <th style="text-align: center;">停用日期</th>
+                            <th style="text-align: center;">每月收费</th>
+                            <th style="text-align: center;">总金额</th>
+
+                            <th style="text-align: center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+
+
+                        <tr>
+                            <td style="width: 80px;text-align: center;">{$vo.id|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}
+
+                            </td>
+                            <td title="{$vo.name}" >
+                                {$vo.name|str_replace=$name, '<font style="color:red">' . $name . '</font>', ###}
+                            </td >
+                            <td title="{$vo.istoll}" style="text-align: center;">
+                                {$vo.istoll|str_replace=$istoll, '<font style="color:red">' . $istoll . '</font>', ###}
+                            </td >
+                            <td title="{$vo.tolldate}" style="text-align: center;">
+                                {$vo.tolldate|str_replace=$date, '<font style="color:red">' . $date . '</font>', ###}
+                            </td>
+                            <td title="{$vo.tollmonth}"  style="text-align: center;">
+                                {$vo.tollmonth|str_replace=$tollmonth, '<font style="color:red">' . $tollmonth . '</font>', ###}
+                            </td>
+                            <td title="{$vo.tollend}" style="text-align: center;">
+                                {$vo.tollend|str_replace=$end, '<font style="color:red">' . $end . '</font>', ###}
+                            </td>
+                            <td title="{$vo.tollevery}" style="text-align: center;">
+                                {$vo.tollevery|str_replace=$every, '<font style="color:red">' . $every . '</font>', ###}
+                            </td>
+                            <td title="{$vo.tollsum}" style="text-align: center;">
+                                {$vo.tollsum|str_replace=$sum, '<font style="color:red">' . $sum . '</font>', ###}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['id']))}" role="button">修 改</a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+
+                    <!--          总计                        -->
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$us|default="0.00"}</td>
+                        <td style="font-size: 20px;font-weight: bolder;text-align: center">总计</td>
+
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;color: red">{$sumtotal|default="0.00"}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

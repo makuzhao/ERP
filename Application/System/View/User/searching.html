@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索-用户信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/del.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：管理老板 -> 搜索
+
+        </div>
+        <div style="margin: 10px 0px;width: 1580px;" >
+            <div>
+                <a href="{:U('User/index')}" class="btn btn-primary btn-lg active" role="button">返回信息浏览</a>
+            </div>
+            <div style="margin: 10px 0px">
+                <table class="table table-striped" >
+                    <thead>
+                        <tr >
+                            <th style="width: 40px;">ID</th>
+                            <th style="width: 80px;">用户名</th>
+                            <th style="width: 100px;">密码</th>
+                            <th style="width: 80px;">姓名</th>
+                            <th style="width: 100px">身份证</th>
+                            <th style="width: 60px">电话</th>
+                            <th style="text-align: center;" title="当前试用状态">试用</th>
+                            <th style="text-align: center;" title="当前收费状态">收费</th>
+                            <th style="width: 80px">区域</th>
+                            <th >邮箱</th>
+                            <th >固定电话</th>
+                            <th >传真</th>
+                            <th style="width: 160px;">地址</th>
+
+                            <th >数据库</th>
+                            <th style="text-align: center;width: 100px;">注册时间</th>
+                            <th style="text-align: center;width: 100px;">上次登录</th>
+
+                            <th >备注</th>
+                            <th >操作</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td >{$vo.id}
+
+                            </td>
+                            <td >{$vo.name|str_replace=$name, '<font style="color:red">' . $name . '</font>', ###}</td>
+                            <td >{$vo.pwd|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}</td>
+                            <td >{$vo.realName|str_replace=$real, '<font style="color:red">' . $real . '</font>', ###}</td>
+                            <td style="width: 100px;">{$vo.IDcard|str_replace=$IDcard, '<font style="color:red">' . $IDcard . '</font>', ###}</td>
+                            <td >{$vo.tel|str_replace=$tel, '<font style="color:red">' . $tel . '</font>', ###}</td>
+
+                            <td style="width: 60px;text-align: center" title="当前使用状态">
+
+                        <if condition="$vo.isfree eq 0 "> 
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/freeUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击试用">禁 用</a>
+                            <else/>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/freeUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击禁用">试 用</a>
+                        </if>
+                        </td>
+                        <td style="width: 60px" title="当前收费状态">
+                        <if condition="$vo.istoll eq 0 "> 
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击收费">免 费</a>
+                            <else/>
+                            <a class="btn btn-primary  btn-xs" href="{:U('Probation/tollUpdate',array('uid'=>$vo['pro_id']))}" role="button" title="点击免费">收 费</a>
+                        </if>
+                        </td>
+                        <td style="width:80px;">{$vo.area|str_replace=$area, '<font style="color:red">' . $area . '</font>', ###}</td>
+
+                        <td >{$vo.email|str_replace=$email, '<font style="color:red">' . $email . '</font>', ###}</td>
+                        <td >{$vo.phone|str_replace=$phone, '<font style="color:red">' . $phone. '</font>', ###}</td>
+                        <td >{$vo.fax|str_replace=$fax, '<font style="color:red">' . $fax . '</font>', ###}</td>
+                        <td title="{$vo.address}" style="width: 160px;">{$vo.address|str_replace=$address, '<font style="color:red">' . $address . '</font>', ###|msubstr=0,8}</td>
+
+
+
+                        <td >{$vo.dbname|str_replace=$str, '<font style="color:red">' . $str . '</font>', ###}</td>
+                        <td style="text-align: center;width: 120px">{:str_replace($str,$replace,$vo['regtime'])}</td>
+                        <td style="text-align: center;width: 120px;">{$vo.latetime|str_replace=$date,'<font style="color:red">' . $date . '</font>', ###}</td>
+                        <td title="{$vo.info}">{$vo.info|str_replace=$info, '<font style="color:red">' . $info . '</font>', ###|msubstr=0,3}</td>
+                        <td style="text-align: center;width: 30px;">
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/update',array('uid'=>$vo['id']))}" role="button">修 改</a>
+                            <a class="btn btn-primary  btn-xs" href="{:U('User/delete',array('uid'=>$vo['id']))}" role="button" title="删除不可恢复，谨慎操作" id="del" onclick ="return del_sure()">
+                                删 除
+                            </a>
+                        </td>
+
+
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tr class="footerTr">
+                        <td style="font-size: 20px;text-align: center;font-weight: bolder;">{$uscount}</td>
+                        <td style="font-size: 18px;font-weight: bolder;text-align: center;">总计</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+
+
+                    </tr>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>

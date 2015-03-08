@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>添加销售的商品</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <meta name="renderer" content="webkit">
+
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+        <script>
+            function che() {
+                // 非零开头的数字
+                var zimu = /^([1-9][0-9]*)$/;
+                if ($('#bar').val() == "") {
+                    alert('数量不能为空');
+                    return false;
+                }
+                if (zimu.test($('#bar').val())) {
+                    return  true;
+                } else {
+                    alert('数据填写错误');
+                    $('#bar').focus($('#bar').val());
+                    return  false;
+                }
+            }
+        </script>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 商品销售 -> 添加
+
+        </div>
+        <div style="margin-top: 30px;width: 78% ">
+            <div style="font-size: 40px;;margin-bottom:20px;text-align: center;">
+                <font style="color: #2f7cef; font-size: 50px;font-weight: bolder">{$real} </font>
+                &nbsp;&nbsp;本店今日营业额：
+                <font style="color: red; font-size: 50px;">{$total|default="0.00"} </font>
+
+
+            </div>
+
+            <div style="font-size: 20px;">
+
+                <form class="form-horizontal" role="form"  id="myForm" name="myForm" method="post" 
+                      action="{:U('Sales/shows',array('shopid'=>$shopid))}" onsubmit="return che()">
+
+                    <input type="text" class="form-control"  name="barcode" value="{$code}" style="display: none">
+                    <!--     条形码 ajax 传值 显示所有预售价的数据到前端        -->
+                    <div class="form-group">
+                        <label  class="col-sm-5 control-label">条形码</label>
+                        <div class="col-sm-3">
+                            <div style="margin-top: 6px;margin-left: 13px;"> {$code} </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-5 control-label">商品</label>
+                        <div class="col-sm-3">
+                            <div style="margin-top: 6px;margin-left: 13px;"> {$product} </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-5 control-label">库存</label>
+                        <div class="col-sm-3">
+                            <div style="margin-top: 6px;margin-left: 13px;"> {$sum}</div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-5 control-label">销售价</label>
+                        <div class="col-sm-3">
+                            <div style="margin-top: 6px;margin-left: 13px;"> {$pre} </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-5 control-label">数量</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="input-in input-in-place" id="bar" placeholder="数量" name="num" value="{$num}"   required="true" >
+                        </div>
+                        <div class="xing-red" style="margin-left: -80px;margin-top: 8px;">*</div>
+                        <script>
+                            $("#bar").focus().val($("#bar").val());
+                        </script>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-10">
+                            <button type="submit" class="input-but" id="out-xian"> 销 售 </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>

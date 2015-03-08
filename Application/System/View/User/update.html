@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新用户的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/JS/city.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid" onload="onloadprovince()">
+        <div class="where">
+
+            当前位置 ：管理老板 -> 更新
+
+        </div>
+        <div style="margin-top: 30px;width: 90%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('User/update')}">
+
+                <volist name="us" id="user" empty="">
+
+                    <input type="hidden" name='uid' value="{$user.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="bar" placeholder="用户登录名" name='name' value="{$user.name}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">密 码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="bar" placeholder="密码" name='pwd' value="{$user.pwd}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">姓 名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="真实姓名" name='real' 
+                                   value="{$user.realName}" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">身份证</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="身份证" name='IDcard' value="{$user.IDcard}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="联系方式" name='tel' value="{$user.tel}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-5">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name='email' value="{$user.email}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">固定电话</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="固定电话" name='phone' value="{$user.phone}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">传真</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="传真" name='fax' value="{$user.fax}" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="地址" name='address' value="{$user.address}" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">所在区域</label>
+                        <div class="col-sm-2">
+
+                            <select id="province"  name="province" class="form-control" onchange="cityName(this.selectedIndex);" >
+                                <option value="">
+                                    -- 请选择省份 --
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select id="city" name="city" class="form-control" >
+                                <option value="">
+                                    -- 请选择城市名 --
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">数据库名</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="数据库名" name='dbname' value="{$user.dbname}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-5">
+                            <textarea class="form-control" rows="5" name="info" placeholder="备注">{$user.info}</textarea>
+                        </div>
+                    </div>
+
+
+                    {$user.group_id}
+                    <volist name="user['Group']" id="vo" empty="没有权限">
+
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label" >所属组</label>
+                            <div class="col-sm-6">
+                                <volist name="ug" id="ug">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="group_id"  <if condition="$ug.id eq $vo.id ">checked='checked'</if>
+                                        id="inlineRadio1"  value="{$ug.id}" required> {$ug.hint}
+                                    </label>
+
+                                </volist>
+                            </div>
+                        </div>
+                    </volist>
+                </volist>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg">更 新</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

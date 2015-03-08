@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品收益报表</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+        <meta name="renderer" content="webkit">
+
+        <link rel="stylesheet" href="__PUBLIC__/CSS/main.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/datepicker.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+
+        <script type="text/javascript" src="__PUBLIC__/JS/bootstrap-datepicker.js"></script>
+
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/jquery.placeholder.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('input,textarea').placeholder();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <script type="text/javascript" src="__PUBLIC__/JS/del.js"></script>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：{$shopName} &nbsp; 今日收益 -> 各商品 -> 显示
+
+        </div>
+
+        <div style="margin-top: 10px">
+
+
+
+            <form class="form-horizontal" role="form" method="get" action="{:U('Revenue/searching')}">
+                <input type="text"  name="shopid" value="{$shopid}" style="display: none">
+                <div style="text-align: center;" id="search">
+
+
+                    <label class="label-form" style="margin-top: 10px;">条形码</label>
+
+                    <input type="text"  class="input-in " id='bar' placeholder="条形码" name="barcode" >
+
+
+                    <label class="label-form" style="margin-top: 10px;">商品名</label>
+
+                    <input type="text"  class="input-in " id='bar' placeholder="商品名或大写首字母" name="product" >
+
+
+                    <label class="label-form" style="margin-top: 10px;">日期 从</label>
+
+                    <input type="text"  name="start"  class="input-in "  placeholder="日期格式：2014-11-10"   id="start">
+                    <script>
+            $('#start').datepicker();
+                    </script>
+
+
+                    <label class="label-form" style="margin-top: 10px;">至</label>
+
+                    <input type="text"  name="end"  class="input-in "  placeholder="日期格式：2014-11-11"   id="end" 
+                           >
+                    <script>
+
+                        $('#end').datepicker();
+
+                    </script>
+                    <br>
+                    <button type="submit" class="btn btn-primary yuan-6"  style="font-size: 18px;" id="out-xian"> 搜 索 </button>
+                </div>
+
+        </div>
+    </form>
+
+
+    <div  style="min-height: 360px;margin-top: 10px;">
+        <table class="table table-striped">
+            <thead>
+                <tr class="tb-thead" style="font-size: 18px;" >
+                    <th style="text-align: center;">收益</th>
+                    <th style="text-align: center;">商品</th>
+                    <th style="text-align: center;">数量</th>
+                    <th style="text-align: center;">条形码</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+            <volist name="list" id="vo" >
+                <tr  <php>if($key%2) { echo " class='tb-tbody-one'";}else{ echo " class='tb-tbody-two'";} </php> >
+
+                <td style="text-align: center;padding-left: 10px;">
+                    <b style="font-size: 26px;padding-left:  10px;">
+                        {$vo.total|default="0"}
+                    </b>
+
+                </td>
+
+                <td style="text-align: center;">{$vo.product|default="null"}</td>
+                <td style="text-align: center;">{$vo.num|default="null"}</td>
+                <td style="text-align: center;">{$vo.barcode|default="null"}</td>
+
+
+                </tr>
+            </volist>
+            </tbody>
+            <!--          总计       -->                  
+            <tr class="footerTr">
+
+
+                <td style="text-align: center;color: red;font-size: 30px;">{$outsum|default="今天没有收益"}</td>
+                <td style="text-align: center;"></td>
+
+                <td style="text-align: center">总计</td>
+                <td style="text-align: center;"></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+    <div style="text-align: center;">
+        {$page}
+    </div>
+</div>
+
+</body>
+</html>

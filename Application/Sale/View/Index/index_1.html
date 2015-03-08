@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/common.css">
+        <link rel="stylesheet" href="__PUBLIC__/CSS/style.css">
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/JS/jquery.SuperSlide.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".sideMenu").slide({
+                    titCell: "h3",
+                    targetCell: "ul",
+                    defaultIndex: -1,
+                    effect: 'slideDown',
+                    delayTime: '500',
+                    trigger: 'click',
+                    triggerTime: '150',
+                    defaultPlay: true,
+                    returnDefault: false,
+                    easing: 'easeInQuint',
+                });
+            });
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="__PUBLIC__/JS/html5shiv.js";></script>
+            <script src="__PUBLIC__/JS/respond.js";></script>
+        <![endif]-->
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/PIE_IE678.js"></script>
+
+
+        <title>{:C('HOME_PAGE')}</title>
+    </head>
+    <body>
+        <!--     页头         -->
+        <div class="top">
+            <div id="top_t">
+                <div id="photo_info" class="fr">
+                    <div id="photo" class="fl" >
+                        <!--       人物头像      -->
+                        <img src="__PUBLIC__/Image/a.jpg" alt="" width="60" height="60" style="border: 0px" >
+                    </div>
+                    <div id="base_info" class="fr">
+                        <div class="help_info">
+                            <!--  帮助   -->
+                            <a href="#" id="hp">&nbsp;</a>
+                            <!--  关于   -->
+                            <a href="#" id="gy">&nbsp;</a>
+                            <!--  退出   -->
+                            <a href="{:U('Index/unsetSess')}" id="out">&nbsp;</a>
+                        </div>
+                        <div class="info_center">
+                            <!--   当前用户   -->
+                            {$sess}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!---    菜单栏      --->
+        <div class="ahov">
+            <script>
+            $(function () {
+                $(".ahov dd").hover(function () {
+                    $(".side").show();
+                });
+                $(".ahov dd").mouseleave(function () {
+                    $(".side").hide();
+                });
+            });
+            </script>
+
+
+
+            <dd>
+                <a > <button class="bbt" >显示菜单</button> </a>
+
+                <div class="side" style="height: 420px;background-color: #000;" >
+
+                    <div class="sideMenu" >
+
+                        <h3 title="" class="uul" >商品销售</h3>
+                        <ul>
+                            <li>
+                                <a href="{:U('Sales/add')}" target="rightFrame" class="uul" > 销售     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Sales/index')}" target="rightFrame" class="uul" > 今日单子   </a>
+                            </li>
+
+
+                        </ul>
+
+                        <h3 title="" class="uul">商品库</h3>
+                        <ul >
+                            <li>
+                                <a href="{:U('Out/index')}" target="rightFrame" class="uul"> 显示     </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Out/add')}" target="rightFrame" class="uul"> 进货   </a>
+                            </li>
+
+
+                        </ul>
+
+                        <h3 title="" class="uul">
+                            <a href="{:U('Index/unsetSess')}" id="out" target="_top"  class="uul">退出</a>
+                        </h3>
+
+
+                    </div>
+
+                </div>
+
+            </dd>
+
+        </div>
+
+        <!--    内容页面      -->
+
+        <div class="main">
+
+            <iframe name="rightFrame" id="rightMain" src="{:U('Sales/add')}" frameborder="no" 
+                    scrolling="auto" width="100%" height="auto" allowtransparency="true">
+            </iframe>
+        </div>
+
+        <div class="bottom">
+            <div id="bottom_bg">
+                {:C('ALL_COPY')}
+            </div>
+        </div>
+
+    </body>
+
+</html>
+

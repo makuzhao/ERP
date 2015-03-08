@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__PUBLIC__/JS/jquery.min.js"></script>
+        <script src="__PUBLIC__/JS/bootstrap.js"></script>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet">
+
+        <script src="__PUBLIC__/JS/jqBootstrapValidation.js"></script>
+
+
+
+
+
+    </head>
+    <body>
+        <div>
+            <form class="form-horizontal">
+                222
+                <input type="email" id="email" required>
+
+                <script>
+                    $(function () {
+                        $("input,select,textarea").not("[type=submit]").jqBootstrapValidation({
+                            preventSubmit: true,
+                        });
+                    });
+                </script>
+
+                <div class="control-group">
+
+                    <label class="control-label">Type something</label>
+                    <div class="controls">
+                        <input type="text" name="some_field" required />
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn">登录</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+    </body>
+</html>

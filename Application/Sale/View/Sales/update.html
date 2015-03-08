@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新出库商品信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Editor/kindeditor.js"></script>
+        <script src="__PUBLIC__/Editor/lang/zh-CN.js"></script>
+        <script>
+            KindEditor.ready(function (K) {
+                window.editor = K.create('#editor_id');
+            });
+        </script>
+        
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：商品销售 -> 更新信息
+
+        </div>
+        <div style="margin-top: 30px">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Sales/update')}">
+
+                <volist name="res" id="vo" empty="没有数据">
+
+                    <input type="hidden" name="outid" value="{$vo.id}">
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  placeholder="{$vo.barcode}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">数量</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" placeholder="{$vo.num}" readonly>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">售价</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="售价" name='presell' value="{$vo.presell}"  readonly>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">金额</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="金额" name='amount' value="{$vo.amount}" readonly>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">销售员</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="销售员" name='salesman' value="{$vo.salesman}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">日期</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="日期" name='saledate' value="{$vo.saledate}" readonly>
+                        </div>
+                    </div>
+
+                </volist>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg"> 更 新 </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+
+    </body>
+</html>

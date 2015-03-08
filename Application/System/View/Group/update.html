@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>更新用户组的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="__PUBLIC__/CSS/bootstrap.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+        <link href="__PUBLIC__/CSS/hongic.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container-fluid">
+        <div class="where">
+
+            当前位置 ：分组管理 -> 更新
+
+        </div>
+        <div style="margin-top: 30px;width: 80%">
+
+            <form class="form-horizontal" role="form" method="post" action="{:U('Group/update')}">
+                <volist name='group' id='vo'>
+                    <input type="hidden" name='gid' value="{$vo.id}">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">用户组名</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="Guest" name='title' value="{$vo.title}">
+                        </div>
+                    </div>
+                </volist>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">当前状态</label>
+                    <div class="col-sm-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="status" checked="checked" id="inlineRadio1" value="1" > 启用
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="inlineRadio1" value="0"> 禁用
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">系统权限<br>(已分配)</label>
+                    <div class="col-sm-10" style="margin-top: -16px">
+                        <table >
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="sysHave" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" checked> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">系统权限<br>(未分配)</label>
+                    <div class="col-sm-10" style="margin-top: -16px">
+                        <table>
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="sysNo" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" > {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">老板权限<br>(已分配)</label>
+                    <div class="col-sm-10" style="margin-top: -16px">
+                        <table >
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="bosHave" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" checked> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">老板权限<br>(未分配)</label>
+                    <div class="col-sm-10" style="margin-top: -16px">
+                        <table >
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="bosNo" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}"> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">销售员权限<br>(已分配)</label>
+                    <div class="col-sm-10" style="margin-top:-16px">
+                        <table >
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="saleHave" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}" checked> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">销售员权限<br>(未分配)</label>
+                    <div class="col-sm-10" style="margin-top:-16px">
+                        <table >
+                            <label class="checkbox-inline">
+                                <tr>
+
+                                <volist name="saleNo" id="vo" default="空白">
+
+                                    <td style="width: 263px;padding: 4px 0px;">
+                                        <input type="checkbox" id="inlineCheckbox1" name="rules[]" value="{$vo.id}"> {$vo.title}
+                                    </td>
+                                    <php>
+                                        if ($i%3==0){
+                                        echo "</tr>";
+                                        }
+                                    </php>
+
+                                </volist>
+                            </label>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg"> 更 新 </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+    </body>
+</html>

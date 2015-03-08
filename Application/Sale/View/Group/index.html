@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>所有用户组的信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="__PUBLIC__/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+
+    </head>
+    <body class="container-fluid">
+        <div style="margin-top: 0px">
+            <div>
+                <table class="table table-hover" >
+                    <tr class="info">
+                        <td >用户组ID</td>
+                        <td >用户组名</td>
+                        <td >当前状态</td>
+                        <td >拥有的权限</td>
+                        <td >操作</td>
+                    </tr>
+                    <volist name="list" id="vo" default="空白">
+                        <tr>
+                            <td >{$vo.id}
+                                <a href="{:U('Group/delete',array('gid'=>$vo['id']))}" title="删除不可恢复，谨慎操作">
+                                    <button type="button" class="close" ><span aria-hidden="true">&times;</span></button>
+                                </a>
+                            </td>
+                            <td >{$vo.title}</td>
+                            <td title="状态说明：1、启用   0、禁用">{$vo.status}</td>
+                            <td title="权限规则ID">{$vo.rules}</td>
+                            <td >
+                                <a class="btn btn-primary  btn-xs" href="{:U('Group/update',array('gid'=>$vo['id']))}" role="button">修改</a>
+                            </td>
+
+
+                        </tr>
+                    </volist>
+
+                </table>
+            </div>
+            <div style="text-align:center;">
+                {$page}        
+
+            </div>
+        </div>
+    </body>
+</html>
